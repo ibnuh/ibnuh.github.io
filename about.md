@@ -4,12 +4,4 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
-
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
-
-### Contact me
-
-[email@domain.com](mailto:email@domain.com)
+I’m a full stack web developer who has started or been involved with both large and small startups. As someone who specializes in backend-development, I appreciate clean and clear code. Having strong skills to develop perfect solutions for complex logic using newest technologies.
