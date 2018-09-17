@@ -1,7 +1,12 @@
 ---
-layout: page
-title: About
+layout: post
+title: 'About'
+author: 'Chester'
 permalink: /about/
 ---
 
-I’m a full stack web developer who has started or been involved with both large and small startups. As someone who specializes in backend-development, I appreciate clean and clear code. Having strong skills to develop perfect solutions for complex logic using newest technologies.
+The purpose of this blog is to archive my personal stuff.
+
+I’m a web developer. Specializes in backend-development, I appreciate clean and clear code. Having strong skills to develop perfect solutions for complex logic, using newest technologies.
+
+Thanks for reading!
