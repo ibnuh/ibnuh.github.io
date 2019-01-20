@@ -4,7 +4,7 @@ title: 'Somethings that bother me a lot'
 date: 2018-11-23 00:45:22 +0700
 ---
 
-![Desert](/images/desert.jpg)
+![Flying above the sky](/images/plane.jpg)
 
 I always wanted to have my own blog, write my own story, but I just couldn't start, no matter how much I think about it every time I read other people's journal.
 
