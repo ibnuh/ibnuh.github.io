@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Somethings that bother me a lot'
+title: 'Something that bother me a lot'
 date: 2018-11-23 00:45:22 +0700
 ---
 
