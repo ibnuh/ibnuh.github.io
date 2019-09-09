@@ -8,7 +8,7 @@ Termux is a powerful terminal emulation for Android, with broad community and ro
 
 This article will explain to you how to setup an SSH Server in Termux and allow you to connect to it from any client in your network.
 
-> Following forward, I refer `$` as termux and `#` as remote machine.
+> I refer `$` as termux and `#` as remote machine.
 
 ## Installing required packages
 
@@ -40,7 +40,7 @@ $ pkill sshd
 
 ## Setting up authentication
 
-We will setup password and key authentication, to start we will setup password authentication and move to key authentication to simplify the process of copying public key to your android device.
+We will setup password and key authentication, to start we will setup password authentication and move to key authentication to simplify the process of copying public key to the android device.
 
 You can skip the key authentication process if you don't care, keep in mind that password authentication is less secure than key authentication.
 
@@ -71,8 +71,37 @@ Retype new password:
 New password was successfully set.
 ```
 
-At this point we're ready to start the SSH Server and connect to our android device. If you don't care about setting up key authentication, just skip to **Connecting**
+At this point we're ready to start the SSH Server and connect to the android device. If you don't care about setting up key authentication, just skip to [Connecting from remote machine](#connecting-from-remote-machine).
+
+## Connecting from remote machine
+
+First of all, we need to know the android device ip address on the device, get this by running
 
 ```
-# ssh anything@
+$ ifconfig
 ```
+
+From this output, we know that the device IP address on the network is `192.168.100.92`
+
+```
+wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.100.92  netmask 255.255.255.0  broadcast 192.168.100.255
+        inet6 fe80::d4d0:8cac:6318:8ac9  prefixlen 64  scopeid 0x20<link>
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 1000  (UNSPEC)
+        RX packets 1118178  bytes 1321397645 (1.2 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 577939  bytes 80497172 (76.7 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
+
+We're ready to connect to the android device from remote
+
+```
+# ssh anything@192.168.100.92 -p 8022
+```
+
+> You can connect using any username because termux doesn't care. In this example I use `anything`.
+
+Put in the password you've setup before, after that, you're in.
+
+![SSH to Termux from remote machine](/images/termux-ssh-in.png)
