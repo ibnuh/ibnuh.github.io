@@ -38,13 +38,9 @@ If you need to kill the server, just kill it's process
 $ pkill sshd
 ```
 
-## Setting up authentication
+## Setting up password authentication
 
-We will setup password and key authentication, to start we will setup password authentication and move to key authentication to simplify the process of copying public key to the android device.
-
-You can skip the key authentication process if you don't care, keep in mind that password authentication is less secure than key authentication.
-
-### Password authentication
+Ideally we should setup key authentication, but for the sake of simplicity of this article, I'm gonna skip that part, keep in mind that password authentication is less secure than key authentication.
 
 Password authentication is enabled by default on termux, but you can still review the configuration by running
 
@@ -71,7 +67,7 @@ Retype new password:
 New password was successfully set.
 ```
 
-At this point we're ready to start the SSH Server and connect to the android device. If you don't care about setting up key authentication, just skip to [Connecting from remote machine](#connecting-from-remote-machine).
+At this point we're ready to start the SSH Server and connect to the android device.
 
 ## Connecting from remote machine
 
