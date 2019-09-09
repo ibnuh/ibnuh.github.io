@@ -4,9 +4,9 @@ title: 'Remote SSH into Android Termux'
 date: 2019-09-08 09:52:00 +0700
 ---
 
-Termux is a powerful terminal emulation for Android, with broad community and robust package manager. Making it easier to run linux computing right in your pocket these days.
+Termux is a powerful terminal emulation for Android, with broad community and robust package manager. Making it easier to run Linux computing right in your pocket these days.
 
-This article will explain to you how to setup an SSH Server in Termux and allow you to connect to it from any client in your network.
+This article will explain to you how to set up an SSH Server in Termux and allow you to connect to it from any client in your network.
 
 > I refer `$` as termux and `#` as remote machine.
 
@@ -18,7 +18,7 @@ Ensure everything is up to date
 $ pkg upgrade
 ```
 
-Install the `openssh` package
+Install the `OpenSSH` package
 
 ```
 $ pkg install openssh
@@ -32,7 +32,7 @@ To start the SSH server, run this command
 $ sshd
 ```
 
-If you need to kill the server, just kill it's process
+If you need to kill the server, just kill its process
 
 ```
 $ pkill sshd
@@ -40,7 +40,7 @@ $ pkill sshd
 
 ## Setting up password authentication
 
-Ideally we should setup key authentication, but for the sake of simplicity of this article, I'm gonna skip that part, keep in mind that password authentication is less secure than key authentication.
+Ideally, we should set up key authentication, but for the sake of simplicity, I'm gonna skip that part, keep in mind that password authentication is less secure than key authentication.
 
 Password authentication is enabled by default on termux, but you can still review the configuration by running
 
@@ -67,11 +67,11 @@ Retype new password:
 New password was successfully set.
 ```
 
-At this point we're ready to start the SSH Server and connect to the android device.
+At this point, we're ready to start the SSH Server and connect to the android device.
 
 ## Connecting from remote machine
 
-First of all, we need to know the android device ip address on the device, get this by running
+First of all, we need to know the android device IP address on the device, get this by running
 
 ```
 $ ifconfig
@@ -96,7 +96,7 @@ We're ready to connect to the android device from remote
 # ssh anything@192.168.100.92 -p 8022
 ```
 
-> You can connect using any username because termux doesn't care. In this example I use `anything`.
+> You can connect using any username because termux doesn't care. In this example, I use `anything`.
 
 Put in the password you've setup before, after that, you're in.
 
