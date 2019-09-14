@@ -1,9 +1,13 @@
 .post {
     padding: 3rem 0;
 
+    @media (min-width: 600px) {
+        font-size: 1.2rem;
+    }
+
     &-info {
         color: $default-tint;
-        font-family: $serif-secondary;
+        font-family: $serif-primary;
         letter-spacing: 0.5px;
         text-align: center;
 
@@ -18,6 +22,10 @@
         font-size: 2rem;
         margin: 1rem 0;
         text-align: center;
+
+        @media (max-width: 600px) {
+            font-size: 1.5rem;
+        }
     }
 
     &-line {
