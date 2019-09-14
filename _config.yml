@@ -10,6 +10,10 @@ author:
     email: ibnuhdev@gmail.com
     github: https://github.com/ibnuh
 
+twitter:
+    username: ibnuhx
+    card: summary
+
 # Build settings
 markdown: kramdown
 
@@ -22,6 +26,7 @@ sass:
 plugins:
     - jekyll-feed
     - jekyll-paginate
+    - jekyll-seo-tag
     # - jemoji #Uncomment this to allow emoji in your post
 
 # Permalinks
