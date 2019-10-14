@@ -16,6 +16,10 @@ layout: default
 
 </div>
 
+{% if site.disqus.shortname %}
+  {% include disqus.html %}
+{% endif %}
+
 <div class="pagination">
 
     {% if page.next.url %}
