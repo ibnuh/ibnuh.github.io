@@ -14,9 +14,6 @@ twitter:
     username: ibnuhx
     card: summary
 
-disqus:
-    shortname: ibnuh
-
 # Build settings
 markdown: kramdown
 
