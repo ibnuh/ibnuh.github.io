@@ -31,7 +31,7 @@ plugins:
 
 # Permalinks
 permalink: /:title
-paginate: 5
+paginate: 6
 
 compress_html:
     clippings: []
