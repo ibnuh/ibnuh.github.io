@@ -6,7 +6,7 @@ date: 2021-12-15 19:52:00 +0700
 
 ![Tailscale device management page](/images/tailscale.png)
 
-As a tech geek and software engineer, I maintain a small personal network where I keep all of my devices connected together, ranging from my development machines, local linux box, [HTPC server](https://en.wikipedia.org/wiki/Home_theater_PC), remote vps, to a [type 1 hypervisor running with proxmox](https://twitter.com/ibnuhx/status/1439492725129183234).
+As a tech geek and software engineer, I maintain a small personal network where I keep all of my devices connected together, ranging from my development machines, local linux box, [HTPC server](https://en.wikipedia.org/wiki/Home_theater_PC){:target="\_blank"}, remote vps, to a [type 1 hypervisor running with proxmox](https://twitter.com/ibnuhx/status/1439492725129183234){:target="\_blank"}.
 
 Please note that this comparison only applies for personal and fairly light use of the network setup, for real organization use, you might better off with common solutions that has better customization options. Before introducing you to Tailscale, let me explain why its so much better than the common solution.
 
@@ -46,11 +46,11 @@ Tailscale is based on WireGuard, and uses strong encryption by default. WireGuar
 
 #### Sign up for an account
 
-Head down to their website [tailscale.com](https://tailscale.com) and register, Tailscale requires a Single Sign-On (SSO) provider, so you’ll need a Google, Microsoft, Okta, OneLogin, Ping, or other supported SSO identity provider account to begin.
+Head down to their website [tailscale.com](https://tailscale.com){:target="\_blank"} and register, Tailscale requires a Single Sign-On (SSO) provider, so you’ll need a Google, Microsoft, Okta, OneLogin, Ping, or other supported SSO identity provider account to begin.
 
 #### Add a machine to your network
 
-In order for Tailscale to be useful, we need to add a machine to your network. Each machine needs to run some client-side software. We support popular platforms like Linux, Windows, macOS, iOS, and Android. Download and setup Tailscale on a machine by following this [link](https://tailscale.com/download).
+In order for Tailscale to be useful, we need to add a machine to your network. Each machine needs to run some client-side software. We support popular platforms like Linux, Windows, macOS, iOS, and Android. Download and setup Tailscale on a machine by following this [link](https://tailscale.com/download){:target="\_blank"}.
 
 ### Closing up
 
