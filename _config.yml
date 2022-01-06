@@ -46,4 +46,4 @@ compress_html:
 collections:
     topics:
         output: true
-        permalink: topics/:path/
+        permalink: topics/:path
