@@ -36,34 +36,28 @@ On the headline of their website, its described as "A secure network that just w
 
 There is a reason why software is served as a service nowadays (SaaS), the hassle of managing your own self hosted service is real and sometimes not fun when you encounter problems and had no one to help. With Tailscale, everything is managed by them.
 
-Tailscale focuses on usability. You can start using Tailscale by downloading the client on the new devices, and then signing in through an SSO account, like Google account or GitHub. There is no need for a separate set of credentials. Then, that new devices is directly be a part of the network and can connect to anything else already on the network, as restricted by access control lists (ACLs)[^1].
+Tailscale is a company that focuses on usability. You can begin using Tailscale by installing the client on new devices and then logging in using a single sign-on (SSO) account, such as a Google account or GitHub account. A different set of credentials isn't required. The new devices will then become part of the network and will be able to connect to anything else on the network, and can also be controlled by access control lists (ACLs).
 
-Tailscale is a peer-to-peer mesh VPN which allows for direct connections between devices, whereas OpenVPN is a VPN with a concentrator that funnels traffic between devices.
+OpenVPN is a VPN with a concentrator that directs traffic between devices, whereas Tailscale is a peer-to-peer mesh VPN that allows for direct connections between devices.
 
-Tailscale is based on WireGuard, and uses strong encryption by default. WireGuard is opinionated so does not allow for user-controlled encryption and settings, and instead uses industry-best default settings.
+Tailscale is built on WireGuard and by default employs robust encryption. Because WireGuard is opinionated, it does not allow users to customize encryption and settings, instead opting for industry-best defaults.
 
 ### Getting started with Tailscale
 
 #### Sign up for an account
 
-Head down to their website [tailscale.com](https://tailscale.com){:target="\_blank"} and register, Tailscale requires a Single Sign-On (SSO) provider, so you’ll need a Google, Microsoft, Okta, OneLogin, Ping, or other supported SSO identity provider account to begin.
+To get started, go to  [tailscale.com](https://tailscale.com){:target="\_blank"} and create an account. Tailscale requires a Single Sign-On (SSO) provider, so you'll need an account with Google, Microsoft, Okta, OneLogin, Ping, or another compatible SSO identity provider.
 
 #### Add a machine to your network
 
-In order for Tailscale to be useful, we need to add a machine to your network. Each machine needs to run some client-side software. We support popular platforms like Linux, Windows, macOS, iOS, and Android. Download and setup Tailscale on a machine by following this [link](https://tailscale.com/download){:target="\_blank"}.
+We'll need to add a machine to your network in order for Tailscale to be useful. Client-side software must be installed on each system. Linux, Windows, macOS, iOS, and Android are just a few of the platforms we support. Follow this [link](https://tailscale.com/download){:target="\_blank"} to download and install Tailscale on a system.
 
 ### Closing up
 
-Congratulations! You just created your own personal Tailscale network! To add more devices, just repeat previous steps and you should be good to go.
+Congratulations! You've just built your very own Tailscale network! Simply repeat the preceding steps to add other devices, and you should be good to go.
 
-Once you have a network of multiple machines established, that’s when all the fun and excitement begins. Tailscale provides each machine on the network with a unique 100.x.y.z IP address so that you can establish stable connections between machines regardless of where those machines are located in the world[^2], regardless of whether they switch between different internet-accessible networks (e.g. home Ethernet, coffee shop Wi-Fi, or a cellular hotspot), and regardless of whether they are behind a firewall[^3].
+When you've formed a network of numerous machines, the real fun and excitement begins. Tailscale assigns a unique 100.x.y.z IP address to each machine on the network, allowing you to establish stable connections between machines regardless of where they are in the world, whether they switch between different internet-accessible networks (e.g. home Ethernet, coffee shop Wi-Fi, or a cellular hotspot), or whether they are protected by a firewall.
 
-Tailscale allows you to connect to any machine in your network, from anywhere in the world, over any standard network protocol.
+Tailscale gives you the ability to connect to any computer in your network from anywhere in the globe using any standard network protocol.
 
-Hope this article helps and I will be adding more updates in the future.
-
----
-
-[^1]: https://tailscale.com/kb/1170/tailscale-vs-openvpn
-[^2]: https://tailscale.com/kb/1017/install
-[^3]: https://tailscale.com/kb/1151/what-is-tailscale
+I hope this page is useful, and I will continue to improve it in the future.
