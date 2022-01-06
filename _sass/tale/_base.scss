@@ -37,6 +37,16 @@ a {
     text-decoration: none;
 }
 
+.topic-link {
+    color: $blue;
+    text-decoration: none;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    color: #bf616a;
+    font-size: 85%;
+    padding: 0.25em 0.5em;
+}
+
 blockquote {
     border-left: 0.25rem solid $grey-2;
     color: $grey-1;
