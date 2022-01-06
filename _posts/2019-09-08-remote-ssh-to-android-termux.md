@@ -2,6 +2,7 @@
 layout: post
 title: 'Remote SSH into Android Termux'
 date: 2019-09-08 09:52:00 +0700
+topics:
 ---
 
 Termux is a powerful terminal emulation for Android, with broad community and robust package manager. Making it easier to run Linux computing right in your pocket these days.

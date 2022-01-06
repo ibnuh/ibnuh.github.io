@@ -2,6 +2,7 @@
 layout: post
 title: 'Easily build your own network with Tailscale'
 date: 2021-12-15 19:52:00 +0700
+topics:
 ---
 
 ![Tailscale device management page](/images/tailscale.png)
@@ -46,7 +47,7 @@ Tailscale is built on WireGuard and by default employs robust encryption. Becaus
 
 #### Sign up for an account
 
-To get started, go to  [tailscale.com](https://tailscale.com){:target="\_blank"} and create an account. Tailscale requires a Single Sign-On (SSO) provider, so you'll need an account with Google, Microsoft, Okta, OneLogin, Ping, or another compatible SSO identity provider.
+To get started, go to [tailscale.com](https://tailscale.com){:target="\_blank"} and create an account. Tailscale requires a Single Sign-On (SSO) provider, so you'll need an account with Google, Microsoft, Okta, OneLogin, Ping, or another compatible SSO identity provider.
 
 #### Add a machine to your network
 
