@@ -5,6 +5,12 @@ layout: default
 <div class="catalogue">
     <h1>Showing posts with topic "{{ page.topics }}"</h1>
 
+    <div class="post">
+    {{ page.content }}
+    </div>
+
+    <div class="hr"></div>
+
     {% for post in site.posts %}
         {% if post.topics contains page.topics %}
         <a href="{{ post.url | prepend: site.baseurl }}" class="catalogue-item">

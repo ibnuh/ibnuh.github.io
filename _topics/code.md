@@ -1,4 +1,4 @@
 ---
 layout: topics
-topics: blog
+topics: code
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: 'Easily build your own network with Tailscale'
 date: 2021-12-15 19:52:00 +0700
-topics:
+topics: tailscale networking vpn linux
 ---
 
 ![Tailscale device management page](/images/tailscale.png)
@@ -37,7 +37,7 @@ On the headline of their website, its described as "A secure network that just w
 
 There is a reason why software is served as a service nowadays (SaaS), the hassle of managing your own self hosted service is real and sometimes not fun when you encounter problems and had no one to help. With Tailscale, everything is managed by them.
 
-Tailscale is a company that focuses on usability. You can begin using Tailscale by installing the client on new devices and then logging in using a single sign-on (SSO) account, such as a Google account or GitHub account. A different set of credentials isn't required. The new devices will then become part of the network and will be able to connect to anything else on the network, and can also be controlled by access control lists (ACLs).
+Tailscale is a company that focuses on usability. You can begin using Tailscale by installing the client on new devices and then logging in using a single sign-on (SSO) account, such as a Google account or GitHub account. A different set of credentials isn't required. The new devices will then become part of the network and will be able to connect to anything else on the network, and can also be controlled by access control lists (ACLs).
 
 OpenVPN is a VPN with a concentrator that directs traffic between devices, whereas Tailscale is a peer-to-peer mesh VPN that allows for direct connections between devices.
 

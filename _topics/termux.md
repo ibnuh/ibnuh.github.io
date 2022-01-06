@@ -1,4 +1,4 @@
 ---
 layout: topics
-topics: tech
+topics: termux
 ---

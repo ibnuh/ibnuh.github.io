@@ -2,7 +2,7 @@
 layout: post
 title: 'Comment driven development'
 date: 2021-12-19 07:52:00 +0700
-topics:
+topics: development code c-sharp
 ---
 
 I tend to sketch out the stages or pseudo-code everything using comments whether I'm coding a large or complicated usecase or something where things could quickly spiral out of hand. Of course, we're talking about coding simple usecases here, not system design and architecture, for which you'll need a lot more than comments.
