@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Fasilkom UMRI'
+title: 'Informatics Engineering University of Muhammadiyah Riau'
 date: 2022-02-22 22:45:00 +0700
 topics: umri
 ---
