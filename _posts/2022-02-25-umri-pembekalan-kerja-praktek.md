@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Pembekalan Kegiatan Kerja Praktek di Masa Pandemi'
-date: 2022-02-22 22:45:00 +0700
+date: 2022-02-25 06:45:00 +0700
 topics: umri
 ---
 

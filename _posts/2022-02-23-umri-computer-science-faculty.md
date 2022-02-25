@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Faculty of Computer Science of University of Muhammadiyah Riau'
-date: 2022-02-22 22:45:00 +0700
+date: 2022-02-23 12:45:00 +0700
 topics: umri
 ---
 
