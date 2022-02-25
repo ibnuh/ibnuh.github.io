@@ -3,6 +3,7 @@ layout: post
 title: '7 Fakta Google Apps for Education'
 date: 2022-02-22 22:35:00 +0700
 topics: umri
+hidden: true
 ---
 
 ![Google Apps for Education](/images/gapps-for-education.jpg)

@@ -3,6 +3,7 @@ layout: post
 title: 'Learn to Build a Digital Startup through Business and Entrepreneurship Training'
 date: 2021-12-31 08:33:00 +0700
 topics: umri
+hidden: true
 ---
 
 ![UMRI Doing Startup](/images/umri-startup.jpeg)

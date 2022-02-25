@@ -3,6 +3,7 @@ layout: post
 title: 'Faculty of Computer Science of University of Muhammadiyah Riau'
 date: 2022-02-23 12:45:00 +0700
 topics: umri
+hidden: true
 ---
 
 The [University of Muhammadiyah Riau](https://umri.ac.id)'s faculty of computer science is a location where people who are intrigued and passionate about computer science and information systems can imagine and work in these disciplines.

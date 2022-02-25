@@ -3,6 +3,7 @@ layout: post
 title: 'Pembekalan Kegiatan Kerja Praktek di Masa Pandemi'
 date: 2022-02-25 06:45:00 +0700
 topics: umri
+hidden: true
 ---
 
 Dalam rangka konsistensi penyelenggaran kegiatan akademik dimasa pandemi, program studi Teknik Informatika – Universitas Muhammadiyah Riau mengadakan kegiatan pembekalan Matakuliah Kerja Praktek khusunya kepada mahasiswa semester 5 (Angkatan 2017). Pembekalan yang bertajuk “Produktif di masa Pandemi” bertujuan untuk memberikan pengetahuan kepada mahasiswa terkait tugas dan beberapa jenis KP (Kerja Praktek) yang dapat dilakukan oleh mahasiswa dimasa pandemi Covid 19 dengan tetap memperhatikan terlaksananya protokol kesehatan. Terdapat beberapa perbedaan Mekanisme dan jenis KP dari tahun sebelumnya diantaranya yaitu mekanisme administrasi yang sudah seluruhnya terakomodasi dengan fasilitas daring serta adanya fleksibelitas jenis-jenis pelaksanaan KP.

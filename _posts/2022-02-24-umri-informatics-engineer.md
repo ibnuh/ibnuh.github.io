@@ -3,6 +3,7 @@ layout: post
 title: 'Informatics Engineering University of Muhammadiyah Riau'
 date: 2022-02-24 22:33:00 +0700
 topics: umri
+hidden: true
 ---
 
 ![Fasilkom UMRI](/images/fasilkom-umri.png)
