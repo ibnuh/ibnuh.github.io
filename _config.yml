@@ -42,8 +42,3 @@ compress_html:
     blanklines: false
     profile: false
     startings: []
-
-collections:
-    topics:
-        output: true
-        permalink: topics/:path

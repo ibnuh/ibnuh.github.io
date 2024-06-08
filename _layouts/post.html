@@ -13,13 +13,6 @@ layout: default
     <div class="post-line"></div>
 
     {{ content }}
-
-    {% assign topics_splitted = page.topics | split: " " %}
-    {% for topic in topics_splitted %}
-    {% assign topic_slug = topic | slugify: "raw" %}
-    <a class="topic-link" href={{ site.baseurl | append: "/topics/" | append: topic_slug }}>{{ topic }}</a>
-    {% endfor %}
-
 </div>
 
 <div class="pagination">

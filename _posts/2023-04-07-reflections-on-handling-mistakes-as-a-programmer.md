@@ -2,7 +2,6 @@
 layout: post
 title: 'Handling mistakes as a Web Developer'
 date: 2023-04-07 14:33:00 +0700
-topics: reflections programming
 ---
 
 As a programmer working in web development, I've come to realize that we have a unique ability that many other professions don't: the ability to undo our mistakes. If we make a mistake, we can simply hit "undo" and try again, revert the commit thats causing the mayhem, and push the code again. Yes there will be some consequences for example the amount of time wasted, angry client, data loss, but mostly it can be rectified rather easily and most of the time it will be _possible_.
