@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Fighting Against Google Drive Sync Ugly Path'
+title: 'Symlink: Fix Google Drive Sync Ugly Path on Windows'
 date: 2024-05-26 13:03:00 +0700
 ---
 
