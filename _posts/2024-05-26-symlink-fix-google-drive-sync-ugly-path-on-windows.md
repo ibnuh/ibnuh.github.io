@@ -12,9 +12,9 @@ Not to mention the disk they added is kinda _polluting_ **my** explorer view, wh
 
 | After                     | Before #1          | Before #2                                    |
 | ------------------------- | ------------------ | -------------------------------------------- |
-| `E:\Drive`                | `G:\My Drive`      | `E:\Google\ibnuhdev@gmail.com\My Drive`      |
-| `E:\DriveRedacted`        | `H:\My Drive`      | `E:\Google\ibnuh@REDACTED.com\My Drive`      |
-| `E:\DriveRedacted-Shared` | `H:\Shared drives` | `E:\Google\ibnuh@REDACTED.com\Shared drives` |
+| E:\Drive                | G:\My Drive      | E:\Google\ibnuhdev@gmail.com\My Drive      |
+| E:\DriveRedacted        | H:\My Drive      | E:\Google\ibnuh@REDACTED.com\My Drive      |
+| E:\DriveRedacted-Shared | H:\Shared drives | E:\Google\ibnuh@REDACTED.com\Shared drives |
 
 ### Disable Virtual Drive
 
