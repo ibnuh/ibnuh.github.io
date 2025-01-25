@@ -21,7 +21,7 @@ Features:
 -   Matches your taskbar's reserved space (no overlap!)
 -   Tested on Windows 10/11 with AutoHotkey v2
 
-```ahk
+```javascript
 ; Center active window
 #c::  {
     WinGetPos(&X, &Y, &W, &H, "A")
@@ -77,7 +77,7 @@ Features:
 
     For horizontal bias, tweak `newX` calculation:
 
-    ```ahk
+    ```javascript
     newX := monitorLeft + (monitorRight - monitorLeft - W) / 3  ; 1/3 from left
     ```
 
@@ -89,7 +89,7 @@ This script isn't malware, but **blindly running code you don't understand is ho
 
 **1. The Mouse Trick (That Isn't Pointless)**
 
-```ahk
+```javascript
 CoordMode("Mouse", "Screen")
 MouseGetPos(&mouseX, &mouseY)
 ```
@@ -98,7 +98,7 @@ _Why?_ AutoHotkey sometimes struggles with windows spanning monitors. Grabbing t
 
 **2. The Monitor Detective Work**
 
-```ahk
+```javascript
 Loop MonitorGetCount() {
     MonitorGetWorkArea(A_Index, &mLeft, &mTop, &mRight, &mBottom)
     if (X >= mLeft && X < mRight && Y >= mTop && Y < mBottom) {
@@ -112,7 +112,7 @@ _Translation:_ It hunts down which monitor your window is actually on by checkin
 
 **3. Math That (Actually) Makes Sense**
 
-```ahk
+```javascript
 newX := monitorLeft + (monitorRight - monitorLeft - W) / 2
 newY := monitorTop + (monitorBottom - monitorTop - H) / 2
 ```
