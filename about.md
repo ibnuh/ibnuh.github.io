@@ -3,13 +3,17 @@ layout: post
 title: 'About'
 permalink: /about/
 ---
-<img src="/images/me.jpg" alt="Muhammad Ibnuh" width="300" height="300" />
 
-👋 Hello there! I'm Ibnuh, and I work as a software engineer on a regular basis. I admire clear and easy-to-maintain code as someone who specializes in backend programming. I've worked on a number of businesses, remotely developing applications alongside other teams from across the world. I'm a good learner who strives to follow to the best practices and has written well-documented software.
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <img src="/images/me_2024.jpeg" alt="Muhammad Ibnuh" width="265" height="340" style="border-radius: 8px; max-width: 100%; height: auto;"/>
+</div>
 
-I uses an alias on the internet because my real name is quite long, which is **M. Ibnu Luthfi Azhar**.
+👋 **Hello there!**  
+I’m Ibnuh, a passionate software engineer specializing in backend development. I enjoy writing clean, efficient, and maintainable code while following best practices to build reliable software. Over the years, I’ve worked with various businesses, remotely collaborating with global teams to develop applications that solve real-world problems. I’m always eager to learn and improve my skills to stay ahead in the ever-evolving tech landscape.
 
-I enjoy watching movies, traveling, and eating delicious food. This blog is where I will try to communicate my thoughts, because I have no idea how to write.
+Since my full name, **M. Ibnu Luthfi Azhar**, is quite long, I go by Ibnuh online.
 
-- [Download CV](/files/muhammad-ibnuh-resume.pdf){:target="\_blank"}
-- [LinkedIn](https://www.linkedin.com/in/ibnuh/){:target="\_blank"}
+Outside of coding, I love watching movies, traveling, and indulging in delicious food. This blog is my personal space to share thoughts, experiences, and insights.
+
+- [Download CV](/files/muhammad-ibnuh-resume.pdf){:target="_blank"}
+- [LinkedIn](https://www.linkedin.com/in/ibnuh/){:target="_blank"}
