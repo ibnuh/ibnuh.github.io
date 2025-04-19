@@ -1,13 +1,13 @@
 # coding: utf-8
 
 Gem::Specification.new do |spec|
-  spec.name          = "tale"
-  spec.version       = "0.1.4"
-  spec.authors       = ["Chester How"]
-  spec.email         = ["chesterhow@gmail.com"]
+  spec.name          = "gale"
+  spec.version       = "0.1.0"
+  spec.authors       = ["Muhammad Ibnuh"]
+  spec.email         = ["ibnuhdev@gmail.com"]
 
-  spec.summary       = %q{Tale is a minimal Jekyll theme curated for storytellers.}
-  spec.homepage      = "https://github.com/chesterhow/tale"
+  spec.summary       = %q{Gale is a modern Jekyll theme for personal blogs and documentation.}
+  spec.homepage      = "https://github.com/ibnuh/gale"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r{^(assets|_layouts|_includes|_sass|LICENSE|README)}i) }
@@ -20,4 +20,4 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
-end
+end 

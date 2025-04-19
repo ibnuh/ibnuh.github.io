@@ -16,6 +16,7 @@ twitter:
 
 # Build settings
 markdown: kramdown
+theme: gale
 
 # Assets
 sass:
