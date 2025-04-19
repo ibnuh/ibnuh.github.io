@@ -29,7 +29,7 @@ pre {
         left: 0;
         right: 0;
         height: 2px;
-        background: linear-gradient(to right, $accent-1, $accent-2, $accent-3);
+        background: $accent-1;
         border-radius: 4px 4px 0 0;
     }
 }
