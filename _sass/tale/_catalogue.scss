@@ -5,6 +5,7 @@
 
         @media (max-width: 600px) {
             font-size: 1rem;
+            line-height: 1.4;
         }
     }
 
@@ -14,9 +15,17 @@
         display: inline-block;
         padding: 2rem 0;
 
+        @media (max-width: 600px) {
+            padding: 1.5rem 0;
+        }
+
         &:hover .catalogue-line,
         &:focus .catalogue-line {
             width: 8rem;
+
+            @media (max-width: 600px) {
+                width: 4rem;
+            }
         }
 
         &:last-child {
@@ -32,6 +41,10 @@
         color: $default-tint;
         font-family: $serif-primary;
         letter-spacing: 0.5px;
+
+        @media (max-width: 600px) {
+            font-size: 0.9rem;
+        }
     }
 
     &-title {
@@ -45,6 +58,8 @@
 
         @media (max-width: 600px) {
             font-size: 1.5rem;
+            margin: 0.3rem 0;
+            line-height: 1.3;
         }
     }
 
@@ -53,5 +68,9 @@
         border-top: 0.2rem solid $accent-2;
         display: block;
         width: 2rem;
+
+        @media (max-width: 600px) {
+            border-top-width: 0.15rem;
+        }
     }
 }
