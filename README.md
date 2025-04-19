@@ -23,3 +23,37 @@ This theme started as a fork of [Tale](https://github.com/chesterhow/tale) by Ch
 - SEO optimized
 - Fast loading
 - Easy to customize
+
+## Personal Setup
+
+### Initial Setup
+
+1. Install Ruby and Jekyll:
+```bash
+brew install ruby
+gem install bundler jekyll
+```
+
+2. Clone the repository:
+```bash
+git clone https://github.com/ibnuh/ibnuh.github.io.git
+cd ibnuh.github.io
+```
+
+3. Install dependencies:
+```bash
+bundle install
+```
+
+### Development
+
+To run the site locally:
+```bash
+bundle exec jekyll serve
+```
+
+Visit `http://localhost:4000` to see the site.
+
+### Deployment
+
+The site is automatically deployed to GitHub Pages when changes are pushed to the main branch.
