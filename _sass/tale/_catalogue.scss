@@ -13,13 +13,12 @@
         display: inline-block;
         padding: 2rem 0;
 
-        &:hover .catalogue-line,
-        &:focus .catalogue-line {
-            width: 5rem;
-        }
-
         &:last-child {
             border: 0;
+        }
+
+        &:hover .catalogue-title {
+            color: $accent-2;
         }
     }
 
@@ -37,10 +36,6 @@
         font-weight: 600;
         margin: 0.5rem 0;
         transition: color 0.2s ease;
-
-        &:hover {
-            color: $accent-2;
-        }
 
         @media (max-width: 600px) {
             font-size: 1.5rem;
