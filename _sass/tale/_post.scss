@@ -1,8 +1,8 @@
 .post {
-    padding: 3rem 0;
+    padding: 2rem 0;
 
     @media (min-width: 600px) {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     &-info {
@@ -10,6 +10,7 @@
         font-family: $serif-primary;
         letter-spacing: 0.5px;
         text-align: center;
+        margin-bottom: 1rem;
 
         span {
             font-style: italic;
@@ -17,35 +18,45 @@
     }
 
     &-title {
-        color: $default-shade;
+        color: $white;
         font-family: $sans-serif;
-        font-size: 2rem;
+        font-size: 2.5rem;
         margin: 1rem 0;
         text-align: center;
+        font-weight: 600;
 
         @media (max-width: 600px) {
-            font-size: 1.5rem;
+            font-size: 2rem;
         }
     }
 
     &-line {
-        border-top: 0.4rem solid $default-shade;
+        border-top: 2px solid $accent-2;
         display: block;
         margin: 0 auto 3rem;
         width: 4rem;
     }
 
     p {
-        margin: 0 0 1rem;
+        margin: 0 0 1.5rem;
+        line-height: 1.8;
     }
 
-    a:hover {
-        text-decoration: underline;
+    a {
+        color: $accent-2;
+        text-decoration: none;
+        transition: color 0.2s ease;
+        
+        &:hover {
+            color: lighten($accent-2, 10%);
+            text-decoration: none;
+        }
     }
 
     img {
-        margin: 0 auto 0.5rem;
-        border-radius: 6px;
+        margin: 2rem auto;
+        border-radius: 4px;
+        box-shadow: 0 4px 6px $shadow-color;
     }
 
     img + em {
@@ -55,6 +66,8 @@
         font-size: 0.9rem;
         font-style: normal;
         text-align: center;
+        margin-top: -1.5rem;
+        margin-bottom: 2rem;
     }
 
     // CSS for making emoji inline
@@ -67,21 +80,37 @@
         vertical-align: text-top;
         padding: 0;
         margin: 0;
+        box-shadow: none;
     }
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    margin: 2rem 0;
+    background-color: $grey-2;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 th, td {
-    padding: 6px;
+    padding: 1rem;
     font-size: 1rem;
-    border: 1px solid #ddd;
+    border: 1px solid $grey-3;
 }
 
 th {
-    background-color: #f4f4f4;
-    font-weight: bold;
+    background-color: $grey-3;
+    font-weight: 600;
+    color: $white;
+}
+
+tr {
+    &:nth-child(even) {
+        background-color: lighten($grey-2, 3%);
+    }
+    
+    &:hover {
+        background-color: lighten($grey-2, 5%);
+    }
 }
