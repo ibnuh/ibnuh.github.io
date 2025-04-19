@@ -1,6 +1,7 @@
 .catalogue {
     p {
         font-size: 1.2rem;
+        color: $white;
 
         @media (max-width: 600px) {
             font-size: 1rem;
@@ -12,6 +13,11 @@
         color: $default-color;
         display: inline-block;
         padding: 2rem 0;
+
+        &:hover .catalogue-line,
+        &:focus .catalogue-line {
+            width: 8rem;
+        }
 
         &:last-child {
             border: 0;
