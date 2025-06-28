@@ -31,52 +31,56 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
-            
+
             headings.forEach(function(heading) {
                 heading.addEventListener('click', function() {
                     var id = heading.id;
                     if (!id) return;
 
+                    var offset = 20;
+                    var top = heading.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({
+                        top: top,
+                        behavior: 'smooth'
+                    });
+
                     var url = location.origin + location.pathname + '#' + id;
 
                     if (navigator.clipboard && window.isSecureContext) {
                         navigator.clipboard.writeText(url).then(function() {
-                            showCopyFeedback(heading, 'Copied!');
+                            showCopyFeedback(heading, 'Link copied!');
                         }).catch(function(err) {
                             fallbackCopyTextToClipboard(url);
-                            showCopyFeedback(heading, 'Copied!');
+                            showCopyFeedback(heading, 'Link copied!');
                         });
                     } else {
                         fallbackCopyTextToClipboard(url);
-                        showCopyFeedback(heading, 'Copied!');
+                        showCopyFeedback(heading, 'Link copied!');
                     }
                 });
             });
 
-            
-            function showCopyFeedback(element, message) {
-                var feedback = document.createElement('div');
-                feedback.textContent = message;
-                feedback.style.position = 'absolute';
-                feedback.style.top = '-30px';
-                feedback.style.left = '0';
-                feedback.style.background = '#14b8a6';
-                feedback.style.color = 'white';
-                feedback.style.padding = '4px 8px';
-                feedback.style.borderRadius = '4px';
-                feedback.style.fontSize = '12px';
+            function showCopyFeedback(heading, message) {
+                var existing = heading.querySelector('.copy-feedback');
+                if (existing) {
+                    existing.remove();
+                }
+
+                var feedback = document.createElement('span');
+                feedback.className = 'copy-feedback';
+                feedback.textContent = ' [' + message + ']';
+                feedback.style.color = '#14b8a6';
+                feedback.style.fontSize = '0.9em';
                 feedback.style.fontFamily = 'monospace';
-                feedback.style.zIndex = '1000';
                 feedback.style.opacity = '0';
                 feedback.style.transition = 'opacity 0.2s ease';
-                
-                element.style.position = 'relative';
-                element.appendChild(feedback);
-                
-                setTimeout(function() {
+
+                heading.appendChild(feedback);
+
+                requestAnimationFrame(() => {
                     feedback.style.opacity = '1';
-                }, 10);
-                
+                });
+
                 setTimeout(function() {
                     feedback.style.opacity = '0';
                     setTimeout(function() {
@@ -86,7 +90,7 @@
                     }, 200);
                 }, 2000);
             }
-            
+
             function fallbackCopyTextToClipboard(text) {
                 var textArea = document.createElement('textarea');
                 textArea.value = text;
@@ -102,17 +106,17 @@
                 textArea.style.background = 'transparent';
                 textArea.style.opacity = '0';
                 textArea.style.zIndex = '-1';
-                
+
                 document.body.appendChild(textArea);
                 textArea.focus();
                 textArea.select();
-                
+
                 try {
                     document.execCommand('copy');
                 } catch (err) {
                     console.error('Fallback: Oops, unable to copy', err);
                 }
-                
+
                 document.body.removeChild(textArea);
             }
         });
