@@ -14,7 +14,7 @@ But when you start dealing with cookies, cross-origin requests, OAuth flows, HTT
 
 **Any subdomain under `*.localhost` automatically resolves to `127.0.0.1` (your local machine)**, this works on macOS, Linux, and Windows without any configuration. The operating system's DNS resolver handles this automatically.
 
-```mermaid
+<div class="mermaid">
 graph TD
     A[web.localhost:3000] --> B[127.0.0.1:3000]
     C[anything.you.want.localhost:3001] --> D[127.0.0.1:3001]
@@ -33,7 +33,7 @@ graph TD
     class A,C,E,G domainNode
     class B,D,F,H ipNode
     class I,J,K,L serviceNode
-```
+</div>
 
 ## Clean multi-service dev environments
 
@@ -71,7 +71,7 @@ In production, those services would live on separate domains or subdomains. On l
 * Inability to properly test the Domain, Path, or SameSite behavior
 * Bugs that only show up after deployment
 
-```mermaid
+<div class="mermaid">
 graph TB
     A[localhost:3000] --> B[Cookie Jar]
     C[localhost:3001] --> B
@@ -83,7 +83,7 @@ graph TB
     
     class A,C,D,E portNode
     class B cookieNode
-```
+</div>
 
 ### `127.0.0.1` and `localhost` are not treated the same
 
