@@ -34,24 +34,25 @@
             
             headings.forEach(function(heading) {
                 heading.addEventListener('click', function() {
-                    var headingText = heading.textContent.trim();
-                    var level = parseInt(heading.tagName.charAt(1));
-                    var hashes = '#'.repeat(level);
-                    var markdownText = hashes + ' ' + headingText;
-                    
+                    var id = heading.id;
+                    if (!id) return;
+
+                    var url = location.origin + location.pathname + '#' + id;
+
                     if (navigator.clipboard && window.isSecureContext) {
-                        navigator.clipboard.writeText(markdownText).then(function() {
+                        navigator.clipboard.writeText(url).then(function() {
                             showCopyFeedback(heading, 'Copied!');
                         }).catch(function(err) {
-                            fallbackCopyTextToClipboard(markdownText);
+                            fallbackCopyTextToClipboard(url);
                             showCopyFeedback(heading, 'Copied!');
                         });
                     } else {
-                        fallbackCopyTextToClipboard(markdownText);
+                        fallbackCopyTextToClipboard(url);
                         showCopyFeedback(heading, 'Copied!');
                     }
                 });
             });
+
             
             function showCopyFeedback(element, message) {
                 var feedback = document.createElement('div');
