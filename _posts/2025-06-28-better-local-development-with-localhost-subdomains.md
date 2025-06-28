@@ -17,7 +17,7 @@ But when you start dealing with cookies, cross-origin requests, OAuth flows, HTT
 ```mermaid
 graph TD
     A[web.localhost:3000] --> B[127.0.0.1:3000]
-    C[sample.api.localhost:3001] --> D[127.0.0.1:3001]
+    C[anything.you.want.localhost:3001] --> D[127.0.0.1:3001]
     E[auth.localhost:5000] --> F[127.0.0.1:5000]
     G[payments.localhost:5002] --> H[127.0.0.1:5002]
     
@@ -26,14 +26,13 @@ graph TD
     F --> K[Auth Service]
     H --> L[Webhook Listener]
     
-    style A fill:#e1f5fe
-    style C fill:#e1f5fe
-    style E fill:#e1f5fe
-    style G fill:#e1f5fe
-    style B fill:#f3e5f5
-    style D fill:#f3e5f5
-    style F fill:#f3e5f5
-    style H fill:#f3e5f5
+    classDef domainNode fill:#2d2d2d,stroke:#14b8a6,stroke-width:2px,color:#e4e4e4
+    classDef ipNode fill:#343030,stroke:#f59e0b,stroke-width:2px,color:#e4e4e4
+    classDef serviceNode fill:#1f1f1f,stroke:#f97316,stroke-width:2px,color:#e4e4e4
+    
+    class A,C,E,G domainNode
+    class B,D,F,H ipNode
+    class I,J,K,L serviceNode
 ```
 
 ## Clean multi-service dev environments
@@ -73,15 +72,17 @@ In production, those services would live on separate domains or subdomains. On l
 * Bugs that only show up after deployment
 
 ```mermaid
-graph LR
-    subgraph "Cookie Sharing Problem"
-        A[localhost:3000] --> B[Cookie Jar]
-        C[localhost:3001] --> B
-        D[localhost:5000] --> B
-        E[localhost:5002] --> B
-    end
+graph TB
+    A[localhost:3000] --> B[Cookie Jar]
+    C[localhost:3001] --> B
+    D[localhost:5000] --> B
+    E[localhost:5002] --> B
     
-    style B fill:#ffebee
+    classDef portNode fill:#2d2d2d,stroke:#14b8a6,stroke-width:2px,color:#e4e4e4
+    classDef cookieNode fill:#f59e0b,stroke:#f59e0b,stroke-width:2px,color:#1a1a1a
+    
+    class A,C,D,E portNode
+    class B cookieNode
 ```
 
 ### `127.0.0.1` and `localhost` are not treated the same
