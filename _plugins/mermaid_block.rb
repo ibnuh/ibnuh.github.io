@@ -1,7 +1,7 @@
 module Jekyll
   class MermaidBlock < Jekyll::Generator
     safe true
-    priority :low
+    priority :high  # Run before markdown processing
 
     def generate(site)
       site.pages.each { |page| process_mermaid_blocks(page) }
@@ -21,6 +21,11 @@ module Jekyll
         mermaid_content = $1.strip
         # Clean up any HTML entities that might have been introduced
         mermaid_content = mermaid_content.gsub(/&gt;/, '>')
+        mermaid_content = mermaid_content.gsub(/&lt;/, '<')
+        mermaid_content = mermaid_content.gsub(/&amp;/, '&')
+        # Also handle the specific case of arrow entities
+        mermaid_content = mermaid_content.gsub(/--&gt;/, '-->')
+        mermaid_content = mermaid_content.gsub(/&lt;--/, '<--')
         "<div class=\"mermaid\">\n#{mermaid_content}\n</div>"
       end
     end
