@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Center Active Window Using AutoHotkey'
+title: 'Center active window using AutoHotkey'
 date: 2025-01-25 14:57:00 +0700
 ---
 
@@ -8,7 +8,7 @@ _A simple solution for centering windows across multiple monitors._
 
 Managing windows across multiple displays can be cumbersome. While Windows offers basic snapping functionality, precisely centering windows requires manual repositioning. This post presents a concise AutoHotkey script that automates window centering with a simple keyboard shortcut.
 
-### The Script
+### The script
 
 Features:
 
@@ -43,13 +43,13 @@ Features:
 }
 ```
 
-### Implementation Guide
+### Implementation guide
 
 1. **Install AutoHotkey v2+** ([Download here](https://www.autohotkey.com/)).
 2. **Save the script** with a `.ahk` extension, such as `CenterWindow.ahk`.
 3. **Execute the script** by right-clicking and selecting "Run Script". For persistent availability, [add it to startup](https://www.autohotkey.com/docs/v2/FAQ.htm#Startup).
 
-### Customization Options
+### Customization options
 
 - **Alternative hotkeys**: Modify `#c` to use different key combinations:
   - `^!c` for `Ctrl + Alt + C`
@@ -59,7 +59,7 @@ Features:
 
 - **Add animation**: Implement [smooth transitions](https://www.autohotkey.com/docs/v2/lib/WinMove.htm#Remarks) if desired.
 
-### Known Limitations
+### Known limitations
 
 - **Administrative windows** (Task Manager, elevated Command Prompt) require running the script with administrative privileges.
 - **Fullscreen applications** may ignore window positioning commands.
@@ -68,18 +68,18 @@ Features:
   newX := monitorLeft + (monitorRight - monitorLeft - W) / 3  ; Position 1/3 from left
   ```
 
-### How It Works
+### How it works
 
 The script functions through three key mechanisms:
 
-**1. Position Detection**
+**1. Position detection**
 ```javascript
 CoordMode("Mouse", "Screen")
 MouseGetPos(&mouseX, &mouseY)
 ```
 This establishes screen-level coordinates to handle multi-monitor setups properly.
 
-**2. Monitor Identification**
+**2. Monitor identification**
 ```javascript
 Loop MonitorGetCount() {
     MonitorGetWorkArea(A_Index, &mLeft, &mTop, &mRight, &mBottom)
@@ -91,7 +91,7 @@ Loop MonitorGetCount() {
 ```
 This loop determines which monitor contains the active window by comparing window coordinates against each display's boundaries.
 
-**3. Centering Calculation**
+**3. Centering calculation**
 ```javascript
 newX := monitorLeft + (monitorRight - monitorLeft - W) / 2
 newY := monitorTop + (monitorBottom - monitorTop - H) / 2

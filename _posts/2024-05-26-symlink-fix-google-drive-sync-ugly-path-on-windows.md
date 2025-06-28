@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Symlink: Fix Google Drive Sync Ugly Path on Windows'
+title: 'Symlink: fix Google Drive sync ugly path on Windows'
 date: 2024-05-26 13:03:00 +0700
 ---
 
@@ -16,7 +16,7 @@ Not to mention the disk they added is kinda _polluting_ **my** explorer view, wh
 | E:\DriveRedacted        | H:\My Drive      | E:\Google\ibnuh@REDACTED.com\My Drive      |
 | E:\DriveRedacted-Shared | H:\Shared drives | E:\Google\ibnuh@REDACTED.com\Shared drives |
 
-### Disable Virtual Drive
+### Disable virtual drive
 
 Head into the Google Drive Preferences, and choose folder, setup an appropriate path where you would point the normal google drive path, you can follow my convention by appending the folder name with the google drive account, or do whatever you like, this will give us the `Before #2` result, and disable `Before #1`.
 
@@ -24,7 +24,7 @@ Now you can stop here, but I don't like having to click to another `My Drive` fo
 
 ![Disable ugly google drive virtual drive](/images/google_drive_ugly_mess.png)
 
-### Adding Symlinks
+### Adding symlinks
 
 A symbolic link (symlink) is a file-system object that points to another file system object. It's like creating a shortcut, but more powerful, as it allows seamless access as if it were part of the file system. Here's how to set it up:
 

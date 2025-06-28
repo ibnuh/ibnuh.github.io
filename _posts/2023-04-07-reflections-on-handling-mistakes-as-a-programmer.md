@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Handling mistakes as a Web Developer'
+title: 'Handling mistakes as a web developer'
 date: 2023-04-07 14:33:00 +0700
 ---
 

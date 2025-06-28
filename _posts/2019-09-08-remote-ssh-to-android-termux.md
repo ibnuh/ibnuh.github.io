@@ -25,7 +25,7 @@ Install the `OpenSSH` package
 $ pkg install openssh
 ```
 
-## Starting and stopping SSH Server
+## Starting and stopping SSH server
 
 To start the SSH server, run this command
 

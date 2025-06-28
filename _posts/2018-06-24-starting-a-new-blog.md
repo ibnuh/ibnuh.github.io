@@ -7,4 +7,4 @@ topics: jekyll about ruby
 
 This month I'm thinking to start a blog to archive and share some notes that had been stored for a while on my Google Keep account.
 
-This blog is built using Jekyll which is a static site generator built using Ruby programming language, and hosted on Github Pages.
+This blog is built using Jekyll which is a static site generator built using Ruby programming language, and hosted on GitHub Pages.
