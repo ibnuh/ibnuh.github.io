@@ -10,6 +10,32 @@ If you're building modern web apps, you've probably already got a few services r
 
 But when you start dealing with cookies, cross-origin requests, OAuth flows, HTTPS, and subdomains, the whole setup gets messy fast. That's where `.localhost` becomes super useful.
 
+## How .localhost works
+
+**Any subdomain under `*.localhost` automatically resolves to `127.0.0.1` (your local machine)**, this works on macOS, Linux, and Windows without any configuration. The operating system's DNS resolver handles this automatically.
+
+```mermaid
+graph TD
+    A[web.localhost:3000] --> B[127.0.0.1:3000]
+    C[sample.api.localhost:3001] --> D[127.0.0.1:3001]
+    E[auth.localhost:5000] --> F[127.0.0.1:5000]
+    G[payments.localhost:5002] --> H[127.0.0.1:5002]
+    
+    B --> I[Frontend App]
+    D --> J[Backend API]
+    F --> K[Auth Service]
+    H --> L[Webhook Listener]
+    
+    style A fill:#e1f5fe
+    style C fill:#e1f5fe
+    style E fill:#e1f5fe
+    style G fill:#e1f5fe
+    style B fill:#f3e5f5
+    style D fill:#f3e5f5
+    style F fill:#f3e5f5
+    style H fill:#f3e5f5
+```
+
 ## Clean multi-service dev environments
 
 Running five different services on different ports sucks. `localhost:3000`, `localhost:3001`, `localhost:5000`, etc. doesn't scale, especially when frontend code needs to target different APIs.
@@ -45,6 +71,18 @@ In production, those services would live on separate domains or subdomains. On l
 * Cookies leaking between unrelated services
 * Inability to properly test the Domain, Path, or SameSite behavior
 * Bugs that only show up after deployment
+
+```mermaid
+graph LR
+    subgraph "Cookie Sharing Problem"
+        A[localhost:3000] --> B[Cookie Jar]
+        C[localhost:3001] --> B
+        D[localhost:5000] --> B
+        E[localhost:5002] --> B
+    end
+    
+    style B fill:#ffebee
+```
 
 ### `127.0.0.1` and `localhost` are not treated the same
 
@@ -95,11 +133,17 @@ It avoids a ton of weird edge cases and bugs that only show up when things go li
 
 Per [RFC 6761](https://www.rfc-editor.org/rfc/rfc6761.html), `.localhost` is a reserved TLD. It's not just a convention, it's guaranteed to resolve to `127.0.0.1` or `::1`, without hitting external DNS servers.
 
+**This works on all major operating systems:**
+- **macOS**: Built-in DNS resolver handles `.localhost` automatically
+- **Linux**: Systemd-resolved and other DNS resolvers support `.localhost`
+- **Windows**: Windows DNS resolver recognizes `.localhost` domains
+
 That means:
 
 * **No DNS leaks.** Even if your DNS config is broken or your VPN hijacks lookups, `.localhost` stays local.
 * **No external traffic.** Every request to a `.localhost` domain stays on your machine.
 * **No surprise conflicts.** `.localhost` is unregistrable, nobody can ever buy `shop.localhost` and serve you malware.
+* **Cross-platform compatibility.** Works the same way on macOS, Linux, and Windows.
 
 It's designed specifically for local dev.
 
@@ -122,6 +166,8 @@ All running with valid TLS, no scary browser warnings, and full cookie support.
 brew install mkcert  # macOS
 # or
 sudo apt install mkcert  # Ubuntu/Debian
+# or
+choco install mkcert  # Windows (Chocolatey)
 
 # Install the local CA
 mkcert -install
@@ -183,15 +229,14 @@ Create a simple script to set up your local environment:
 #!/bin/bash
 # setup-localhost.sh
 
-# Add entries to /etc/hosts (if not already present)
-echo "127.0.0.1 web.localhost" | sudo tee -a /etc/hosts
-echo "127.0.0.1 api.localhost" | sudo tee -a /etc/hosts
-echo "127.0.0.1 auth.localhost" | sudo tee -a /etc/hosts
+# Note: No need to modify /etc/hosts on modern systems
+# .localhost domains resolve automatically to 127.0.0.1
 
 # Generate SSL certificates
 mkcert web.localhost api.localhost auth.localhost
 
 echo "Localhost domains configured!"
+echo "web.localhost, api.localhost, and auth.localhost now resolve to 127.0.0.1"
 ```
 
 ### 2. Environment variables
@@ -234,6 +279,9 @@ sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
 
 # On Linux
 sudo systemctl restart systemd-resolved
+
+# On Windows
+ipconfig /flushdns
 ```
 
 ### 2. Port conflicts
@@ -264,7 +312,7 @@ mkcert -key-file key.pem -cert-file cert.pem web.localhost api.localhost
 
 `.localhost` isn't a throwaway dev hack, it's part of the spec for a reason. It gives you:
 
-* **Local-only domains** that are DNS-safe
+* **Local-only domains** that are DNS-safe and work on macOS, Linux, and Windows
 * **Clean subdomain structure** for microservices or frontends
 * **Accurate cookie, storage, and CORS behavior**
 * **Easy HTTPS** with tools like mkcert
