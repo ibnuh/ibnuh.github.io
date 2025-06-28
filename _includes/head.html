@@ -26,4 +26,94 @@
 
         gtag('config', 'UA-32700356-3');
     </script>
+
+    <!-- Heading copy functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            
+            headings.forEach(function(heading) {
+                heading.addEventListener('click', function() {
+                    var headingText = heading.textContent.trim();
+                    var level = parseInt(heading.tagName.charAt(1));
+                    var hashes = '#'.repeat(level);
+                    var markdownText = hashes + ' ' + headingText;
+                    
+                    if (navigator.clipboard && window.isSecureContext) {
+                        navigator.clipboard.writeText(markdownText).then(function() {
+                            showCopyFeedback(heading, 'Copied!');
+                        }).catch(function(err) {
+                            fallbackCopyTextToClipboard(markdownText);
+                            showCopyFeedback(heading, 'Copied!');
+                        });
+                    } else {
+                        fallbackCopyTextToClipboard(markdownText);
+                        showCopyFeedback(heading, 'Copied!');
+                    }
+                });
+            });
+            
+            function showCopyFeedback(element, message) {
+                var feedback = document.createElement('div');
+                feedback.textContent = message;
+                feedback.style.position = 'absolute';
+                feedback.style.top = '-30px';
+                feedback.style.left = '0';
+                feedback.style.background = '#14b8a6';
+                feedback.style.color = 'white';
+                feedback.style.padding = '4px 8px';
+                feedback.style.borderRadius = '4px';
+                feedback.style.fontSize = '12px';
+                feedback.style.fontFamily = 'monospace';
+                feedback.style.zIndex = '1000';
+                feedback.style.opacity = '0';
+                feedback.style.transition = 'opacity 0.2s ease';
+                
+                element.style.position = 'relative';
+                element.appendChild(feedback);
+                
+                setTimeout(function() {
+                    feedback.style.opacity = '1';
+                }, 10);
+                
+                setTimeout(function() {
+                    feedback.style.opacity = '0';
+                    setTimeout(function() {
+                        if (feedback.parentNode) {
+                            feedback.parentNode.removeChild(feedback);
+                        }
+                    }, 200);
+                }, 2000);
+            }
+            
+            function fallbackCopyTextToClipboard(text) {
+                var textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.top = '0';
+                textArea.style.left = '0';
+                textArea.style.width = '2em';
+                textArea.style.height = '2em';
+                textArea.style.padding = '0';
+                textArea.style.border = 'none';
+                textArea.style.outline = 'none';
+                textArea.style.boxShadow = 'none';
+                textArea.style.background = 'transparent';
+                textArea.style.opacity = '0';
+                textArea.style.zIndex = '-1';
+                
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                
+                try {
+                    document.execCommand('copy');
+                } catch (err) {
+                    console.error('Fallback: Oops, unable to copy', err);
+                }
+                
+                document.body.removeChild(textArea);
+            }
+        });
+    </script>
 </head>
