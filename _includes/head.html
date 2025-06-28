@@ -17,6 +17,48 @@
     <!-- RSS -->
     {% feed_meta %}
 
+    <!-- Mermaid -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            themeVariables: {
+                primaryColor: '#14b8a6',
+                primaryTextColor: '#333',
+                primaryBorderColor: '#14b8a6',
+                lineColor: '#666',
+                secondaryColor: '#f0f0f0',
+                tertiaryColor: '#e8f5e8'
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.init(undefined, '.mermaid');
+            
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList') {
+                        const mermaidElements = mutation.target.querySelectorAll('.mermaid');
+                        if (mermaidElements.length > 0) {
+                            mermaid.init(undefined, '.mermaid');
+                        }
+                    }
+                });
+            });
+            
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+    </script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-32700356-3"></script>
     <script>

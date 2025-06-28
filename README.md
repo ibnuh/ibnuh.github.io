@@ -1,69 +1,84 @@
-# Gale
+# Muhammad Ibnuh's Blog
 
-My personal Jekyll theme for my blog. It's a clean, responsive theme that I've customized to my preferences.
-
-## Origin
-
-This theme started as a fork of [Tale](https://github.com/chesterhow/tale) by Chester How, but I've customized it to match my preferences and needs:
-
-- Modern color schemes and typography
-- Improved mobile responsiveness
-- Enhanced code block styling
-- Better hover effects and animations
-- Updated layout and spacing
-- Custom catalogue styling
-- And many other personal touches
+Personal blog built with Jekyll using the Gale theme.
 
 ## Features
 
-- Clean and minimal design
-- Responsive layout
-- Syntax highlighting
-- Mobile-first approach
+- Clean, minimal design
+- Syntax highlighting for code blocks
+- Mermaid diagram support
+- Responsive design
 - SEO optimized
-- Fast loading
-- Easy to customize
 
-## Personal Setup
+## Mermaid Diagrams
 
-### Initial Setup
+This blog supports Mermaid diagrams for creating flowcharts, sequence diagrams, and other visualizations. You can use them in your posts in two ways:
 
-1. Install Ruby and Jekyll:
-```bash
-brew install ruby
-gem install bundler jekyll
+### Method 1: Using Markdown Code Blocks
+
+```markdown
+```mermaid
+graph TD
+    A[Start] --> B{Decision?}
+    B -->|Yes| C[Do Something]
+    B -->|No| D[Do Nothing]
+    C --> E[End]
+    D --> E
+```
 ```
 
-2. Clone the repository:
-```bash
-git clone https://github.com/ibnuh/ibnuh.github.io.git
-cd ibnuh.github.io
+### Method 2: Using the Custom Tag
+
+```markdown
+{% mermaid %}
+graph TD
+    A[Start] --> B{Decision?}
+    B -->|Yes| C[Do Something]
+    B -->|No| D[Do Nothing]
+    C --> E[End]
+    D --> E
+{% endmermaid %}
 ```
 
-3. Install dependencies:
+### Supported Diagram Types
+
+- Flowcharts
+- Sequence diagrams
+- Class diagrams
+- State diagrams
+- Entity Relationship diagrams
+- User Journey diagrams
+- Gantt charts
+- Pie charts
+- Git graphs
+
+### Styling
+
+Mermaid diagrams are automatically styled to match your blog's theme with:
+- Responsive design
+- Dark theme compatibility
+- Custom colors matching your accent colors
+- Proper spacing and padding
+
+## Development
+
+### Prerequisites
+
+- Ruby 3.4.3 or higher
+- Bundler
+
+### Setup
+
+1. Clone the repository
+2. Install dependencies: `bundle install`
+3. Start the development server: `bundle exec jekyll serve`
+
+### Building
+
 ```bash
-bundle install
+bundle exec jekyll build
 ```
 
-### Development
+## License
 
-To run the site locally:
-```bash
-bundle exec jekyll serve
-```
-
-Visit `http://localhost:4000` to see the site.
-
-### Deployment
-
-The site is automatically deployed to GitHub Pages when changes are pushed to the main branch.
-
-### Theme Setup
-
-This theme is set up as a local theme, not a gem. The theme files are in the `_sass/gale` directory and imported in `_sass/gale.scss`.
-
-To use this theme in another project:
-1. Copy the `_sass/gale` directory to your project
-2. Copy the `_sass/gale.scss` file to your project
-3. Make sure your `_config.yml` doesn't specify a theme (comment out or remove the `theme:` line)
-4. Import the theme in your main SCSS file: `@import "gale";`
+This project is licensed under the MIT License.
