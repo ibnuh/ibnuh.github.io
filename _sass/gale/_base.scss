@@ -67,7 +67,6 @@ h6 {
 }
 
 // Set the heading level indicators
-h1::before { content: "#"; }
 h2::before { content: "##"; }
 h3::before { content: "###"; }
 h4::before { content: "####"; }
