@@ -286,42 +286,95 @@
                     });
                 });
 
-                // Scroll highlighting
+                // Scroll highlighting with improved algorithm
                 function updateActiveTOCItem() {
-                    const scrollPosition = window.scrollY + 150; // Offset for better detection
+                    const scrollPosition = window.scrollY;
+                    const viewportHeight = window.innerHeight;
+                    const offset = 200; // Offset from top of viewport
+                    
                     let currentHeading = null;
+                    let minDistance = Infinity;
 
-                    // Find the current heading based on scroll position
+                    // Find the heading closest to the top of viewport (with offset)
                     headings.forEach(function(heading) {
-                        const headingTop = heading.getBoundingClientRect().top + window.pageYOffset;
-                        if (scrollPosition >= headingTop - 100) {
+                        const rect = heading.getBoundingClientRect();
+                        const headingTop = scrollPosition + rect.top;
+                        const distance = Math.abs(headingTop - (scrollPosition + offset));
+
+                        // Heading is above the offset point and closer than previous
+                        if (rect.top <= offset && distance < minDistance) {
+                            minDistance = distance;
                             currentHeading = heading;
                         }
                     });
 
-                    // Update active state
+                    // If no heading found above offset, use the first visible one
+                    if (!currentHeading) {
+                        headings.forEach(function(heading) {
+                            const rect = heading.getBoundingClientRect();
+                            if (rect.top >= 0 && rect.top <= viewportHeight) {
+                                if (!currentHeading || rect.top < currentHeading.getBoundingClientRect().top) {
+                                    currentHeading = heading;
+                                }
+                            }
+                        });
+                    }
+
+                    // Update active state smoothly
                     tocLinks.forEach(function(link) {
-                        link.classList.remove('active');
-                        if (currentHeading && link.getAttribute('data-target') === currentHeading.id) {
-                            link.classList.add('active');
+                        const wasActive = link.classList.contains('active');
+                        const shouldBeActive = currentHeading && link.getAttribute('data-target') === currentHeading.id;
+                        
+                        if (wasActive !== shouldBeActive) {
+                            if (shouldBeActive) {
+                                link.classList.add('active');
+                                // Scroll active item into view in desktop TOC (only if needed)
+                                const desktopTOC = document.querySelector('.toc-desktop');
+                                if (desktopTOC && window.innerWidth >= 1024) {
+                                    const linkRect = link.getBoundingClientRect();
+                                    const tocRect = desktopTOC.getBoundingClientRect();
+                                    const tocScrollTop = desktopTOC.scrollTop;
+                                    const linkOffsetTop = link.offsetTop;
+                                    
+                                    // Only scroll if link is outside visible area
+                                    if (linkOffsetTop < tocScrollTop || 
+                                        linkOffsetTop + link.offsetHeight > tocScrollTop + tocRect.height) {
+                                        link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                    }
+                                }
+                            } else {
+                                link.classList.remove('active');
+                            }
                         }
                     });
                 }
 
-                // Throttle scroll events
+                // Optimized scroll handler with requestAnimationFrame
+                let lastScrollTop = 0;
                 let ticking = false;
-                window.addEventListener('scroll', function() {
+                
+                function handleScroll() {
+                    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    
                     if (!ticking) {
                         window.requestAnimationFrame(function() {
-                            updateActiveTOCItem();
+                            // Only update if scroll position changed significantly
+                            if (Math.abs(currentScrollTop - lastScrollTop) > 5) {
+                                updateActiveTOCItem();
+                                lastScrollTop = currentScrollTop;
+                            }
                             ticking = false;
                         });
                         ticking = true;
                     }
-                });
+                }
 
-                // Initial update
-                updateActiveTOCItem();
+                window.addEventListener('scroll', handleScroll, { passive: true });
+                
+                // Initial update after a short delay to ensure DOM is ready
+                setTimeout(function() {
+                    updateActiveTOCItem();
+                }, 100);
             }
 
             generateTOC();
