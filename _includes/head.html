@@ -201,4 +201,130 @@
             }
         });
     </script>
+
+    <!-- Table of Contents -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function generateTOC() {
+                const postContent = document.querySelector('.post-content');
+                if (!postContent) return;
+
+                const headings = postContent.querySelectorAll('h2, h3, h4, h5, h6');
+                if (headings.length === 0) return;
+
+                const tocMobile = document.getElementById('toc-mobile');
+                const tocDesktop = document.getElementById('toc-desktop');
+
+                if (!tocMobile || !tocDesktop) return;
+
+                // Create TOC structure
+                const tocTitle = document.createElement('div');
+                tocTitle.className = 'toc-title';
+                tocTitle.textContent = 'Table of Contents';
+
+                const tocList = document.createElement('ul');
+                tocList.className = 'toc-list';
+
+                let tocHTML = '';
+                headings.forEach(function(heading, index) {
+                    // Generate ID if not exists
+                    let id = heading.id;
+                    if (!id) {
+                        id = 'heading-' + index;
+                        heading.id = id;
+                    }
+
+                    // Create slug from text if needed
+                    if (id.startsWith('heading-')) {
+                        const text = heading.textContent.trim().toLowerCase()
+                            .replace(/[^\w\s-]/g, '')
+                            .replace(/\s+/g, '-')
+                            .replace(/-+/g, '-');
+                        id = text || 'heading-' + index;
+                        heading.id = id;
+                    }
+
+                    const level = parseInt(heading.tagName.charAt(1));
+                    const indent = (level - 2) * 1.5; // h2 = 0, h3 = 1.5rem, etc.
+
+                    tocHTML += '<li class="toc-item toc-level-' + level + '" style="padding-left: ' + indent + 'rem;">';
+                    tocHTML += '<a href="#' + id + '" class="toc-link" data-target="' + id + '">';
+                    tocHTML += heading.textContent.trim();
+                    tocHTML += '</a></li>';
+                });
+
+                tocList.innerHTML = tocHTML;
+
+                // Add to mobile and desktop containers
+                const mobileWrapper = document.createElement('div');
+                mobileWrapper.className = 'toc-wrapper';
+                mobileWrapper.appendChild(tocTitle.cloneNode(true));
+                mobileWrapper.appendChild(tocList.cloneNode(true));
+                tocMobile.appendChild(mobileWrapper);
+
+                const desktopWrapper = document.createElement('div');
+                desktopWrapper.className = 'toc-wrapper';
+                desktopWrapper.appendChild(tocTitle.cloneNode(true));
+                desktopWrapper.appendChild(tocList.cloneNode(true));
+                tocDesktop.appendChild(desktopWrapper);
+
+                // Smooth scroll for TOC links
+                const tocLinks = document.querySelectorAll('.toc-link');
+                tocLinks.forEach(function(link) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('data-target');
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            const offset = 100;
+                            const top = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+                            window.scrollTo({
+                                top: top,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+
+                // Scroll highlighting
+                function updateActiveTOCItem() {
+                    const scrollPosition = window.scrollY + 150; // Offset for better detection
+                    let currentHeading = null;
+
+                    // Find the current heading based on scroll position
+                    headings.forEach(function(heading) {
+                        const headingTop = heading.getBoundingClientRect().top + window.pageYOffset;
+                        if (scrollPosition >= headingTop - 100) {
+                            currentHeading = heading;
+                        }
+                    });
+
+                    // Update active state
+                    tocLinks.forEach(function(link) {
+                        link.classList.remove('active');
+                        if (currentHeading && link.getAttribute('data-target') === currentHeading.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+
+                // Throttle scroll events
+                let ticking = false;
+                window.addEventListener('scroll', function() {
+                    if (!ticking) {
+                        window.requestAnimationFrame(function() {
+                            updateActiveTOCItem();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+
+                // Initial update
+                updateActiveTOCItem();
+            }
+
+            generateTOC();
+        });
+    </script>
 </head>
