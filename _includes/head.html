@@ -255,18 +255,26 @@
 
                 tocList.innerHTML = tocHTML;
 
-                // Add to mobile and desktop containers
-                const mobileWrapper = document.createElement('div');
-                mobileWrapper.className = 'toc-wrapper';
-                mobileWrapper.appendChild(tocTitle.cloneNode(true));
-                mobileWrapper.appendChild(tocList.cloneNode(true));
-                tocMobile.appendChild(mobileWrapper);
+                // Helper to build TOC wrapper with scrollable list container
+                function appendTOC(target) {
+                    if (!target) return;
 
-                const desktopWrapper = document.createElement('div');
-                desktopWrapper.className = 'toc-wrapper';
-                desktopWrapper.appendChild(tocTitle.cloneNode(true));
-                desktopWrapper.appendChild(tocList.cloneNode(true));
-                tocDesktop.appendChild(desktopWrapper);
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'toc-wrapper';
+
+                    const title = tocTitle.cloneNode(true);
+                    const listContainer = document.createElement('div');
+                    listContainer.className = 'toc-list-container';
+                    const listClone = tocList.cloneNode(true);
+                    listContainer.appendChild(listClone);
+
+                    wrapper.appendChild(title);
+                    wrapper.appendChild(listContainer);
+                    target.appendChild(wrapper);
+                }
+
+                appendTOC(tocMobile);
+                appendTOC(tocDesktop);
 
                 // Smooth scroll for TOC links
                 const tocLinks = document.querySelectorAll('.toc-link');
@@ -329,17 +337,17 @@
                             if (shouldBeActive) {
                                 link.classList.add('active');
                                 // Scroll active item into view in desktop TOC (only if needed)
-                                const desktopTOC = document.querySelector('.toc-desktop');
-                                if (desktopTOC && window.innerWidth >= 1024) {
-                                    const linkRect = link.getBoundingClientRect();
-                                    const tocRect = desktopTOC.getBoundingClientRect();
-                                    const tocScrollTop = desktopTOC.scrollTop;
-                                    const linkOffsetTop = link.offsetTop;
-                                    
-                                    // Only scroll if link is outside visible area
-                                    if (linkOffsetTop < tocScrollTop || 
-                                        linkOffsetTop + link.offsetHeight > tocScrollTop + tocRect.height) {
-                                        link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                const desktopListContainer = document.querySelector('.toc-desktop .toc-list-container');
+                                if (desktopListContainer && desktopListContainer.contains(link) && window.innerWidth >= 1024) {
+                                    const containerHeight = desktopListContainer.clientHeight;
+                                    const containerScrollTop = desktopListContainer.scrollTop;
+                                    const linkTop = link.offsetTop;
+                                    const linkBottom = linkTop + link.offsetHeight;
+
+                                    if (linkTop < containerScrollTop) {
+                                        desktopListContainer.scrollTo({ top: Math.max(linkTop - 24, 0), behavior: 'smooth' });
+                                    } else if (linkBottom > containerScrollTop + containerHeight) {
+                                        desktopListContainer.scrollTo({ top: linkBottom - containerHeight + 24, behavior: 'smooth' });
                                     }
                                 }
                             } else {

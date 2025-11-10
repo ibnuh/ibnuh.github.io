@@ -291,11 +291,15 @@
         .toc-wrapper {
             background: linear-gradient(135deg, $grey-2 0%, lighten($grey-2, 2%) 100%);
             border: 1px solid $grey-3;
-            border-radius: 12px;
+            border-radius: 12px 0 0 12px;
             padding: 1.75rem;
             margin-bottom: 2rem;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
             transition: box-shadow 0.3s ease, transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            min-height: 0;
 
             &:hover {
                 box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
@@ -317,6 +321,35 @@
             list-style: none;
             margin: 0;
             padding: 0;
+        }
+
+        .toc-list-container {
+            max-height: 60vh;
+            overflow-y: auto;
+            margin: -0.5rem -0.75rem -0.5rem 0;
+            padding: 0.5rem 0.75rem 0.5rem 0.5rem;
+            border-radius: 8px 0 0 8px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(4px);
+            min-height: 0;
+
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: transparent;
+                border-radius: 3px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: rgba(20, 184, 166, 0.35);
+                border-radius: 3px;
+
+                &:hover {
+                    background: rgba(20, 184, 166, 0.55);
+                }
+            }
         }
 
         .toc-item {
@@ -382,12 +415,10 @@
             right: 2rem;
             max-width: 260px;
             max-height: calc(100vh - 160px);
-            overflow-y: auto;
-            overflow-x: hidden;
             z-index: 100;
             background: linear-gradient(135deg, $grey-2 0%, lighten($grey-2, 2%) 100%);
             border: 1px solid $grey-3;
-            border-radius: 12px;
+            border-radius: 12px 0 0 12px;
             padding: 1.5rem;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
             opacity: 0;
@@ -395,34 +426,23 @@
             backdrop-filter: blur(10px);
             will-change: opacity, transform;
             contain: layout style paint;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            min-height: 0;
 
             // Hide if no content
             &:empty {
                 display: none;
             }
 
-            // Scrollbar styling
-            &::-webkit-scrollbar {
-                width: 6px;
-            }
-
-            &::-webkit-scrollbar-track {
-                background: transparent;
-                border-radius: 3px;
-            }
-
-            &::-webkit-scrollbar-thumb {
-                background: rgba(20, 184, 166, 0.4);
-                border-radius: 3px;
-                transition: background 0.2s ease;
-
-                &:hover {
-                    background: rgba(20, 184, 166, 0.6);
-                }
-            }
-
             .toc-wrapper {
                 position: relative;
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                gap: 1rem;
+                min-height: 0;
             }
 
             .toc-title {
@@ -430,22 +450,47 @@
                 font-family: $sans-serif;
                 font-size: 0.95rem;
                 font-weight: 600;
-                margin: 0 0 1.25rem 0;
-                padding-bottom: 0.875rem;
+                margin: 0;
+                padding: 0.5rem 0 0.875rem 0;
                 border-bottom: 2px solid $accent-2;
-                position: sticky;
-                top: 0;
-                background: linear-gradient(135deg, $grey-2 0%, lighten($grey-2, 2%) 100%);
-                z-index: 1;
                 letter-spacing: 0.3px;
-                padding-top: 0.25rem;
-                margin-top: -0.25rem;
             }
 
             .toc-list {
                 list-style: none;
                 margin: 0;
                 padding: 0;
+            }
+
+            .toc-list-container {
+                flex: 1;
+                overflow-y: auto;
+                overflow-x: hidden;
+                margin: 0 -0.75rem -0.5rem 0;
+                padding: 0.25rem 0.75rem 0.5rem 0.5rem;
+                border-radius: 8px 0 0 8px;
+                background: rgba(255, 255, 255, 0.02);
+                backdrop-filter: blur(4px);
+                min-height: 0;
+
+                &::-webkit-scrollbar {
+                    width: 6px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: transparent;
+                    border-radius: 3px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: rgba(20, 184, 166, 0.4);
+                    border-radius: 3px;
+                    transition: background 0.2s ease;
+
+                    &:hover {
+                        background: rgba(20, 184, 166, 0.6);
+                    }
+                }
             }
 
             .toc-item {
