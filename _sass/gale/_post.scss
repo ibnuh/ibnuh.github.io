@@ -276,7 +276,7 @@
     // Table of Contents
     .toc-mobile {
         display: block;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
         opacity: 0;
         animation: fadeIn 0.4s ease forwards;
         will-change: opacity;
@@ -293,32 +293,27 @@
         }
 
         .toc-wrapper {
-            background: linear-gradient(135deg, $grey-2 0%, color.adjust($grey-2, $lightness: 2%) 100%);
+            background: $grey-2;
             border: 1px solid $grey-3;
-            border-radius: 12px 0 0 12px;
-            padding: 1.75rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-            transition: box-shadow 0.3s ease, transform 0.2s ease;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 0;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.75rem;
             min-height: 0;
-
-            &:hover {
-                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            }
         }
 
         .toc-title {
             color: $white;
             font-family: $sans-serif;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 600;
-            margin: 0 0 1.25rem 0;
-            padding-bottom: 0.875rem;
-            border-bottom: 2px solid $accent-2;
-            letter-spacing: 0.3px;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid $grey-3;
+            letter-spacing: 0;
         }
 
         .toc-list {
@@ -330,34 +325,30 @@
         .toc-list-container {
             max-height: 60vh;
             overflow-y: auto;
-            margin: -0.5rem -0.75rem -0.5rem 0;
-            padding: 0.5rem 0.75rem 0.5rem 0.5rem;
-            border-radius: 8px 0 0 8px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(4px);
+            margin: 0;
+            padding: 0;
             min-height: 0;
 
             &::-webkit-scrollbar {
-                width: 6px;
+                width: 4px;
             }
 
             &::-webkit-scrollbar-track {
                 background: transparent;
-                border-radius: 3px;
             }
 
             &::-webkit-scrollbar-thumb {
-                background: rgba(20, 184, 166, 0.35);
-                border-radius: 3px;
+                background: rgba(20, 184, 166, 0.3);
+                border-radius: 2px;
 
                 &:hover {
-                    background: rgba(20, 184, 166, 0.55);
+                    background: rgba(20, 184, 166, 0.5);
                 }
             }
         }
 
         .toc-item {
-            margin: 0.375rem 0;
+            margin: 0.25rem 0;
             position: relative;
         }
 
@@ -365,46 +356,20 @@
             color: $default-color;
             text-decoration: none;
             font-family: $sans-serif;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            transition: color 0.25s ease, background-color 0.2s ease;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            transition: color 0.2s ease;
             display: block;
-            padding: 0.375rem 0.5rem;
-            border-radius: 6px;
+            padding: 0.25rem 0;
             position: relative;
-            margin-left: -0.5rem;
-            margin-right: -0.5rem;
-            will-change: color, background-color;
-
-            &::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 50%;
-                transform: translateY(-50%) scaleY(0);
-                width: 3px;
-                height: 0;
-                background-color: $accent-2;
-                border-radius: 0 2px 2px 0;
-                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                            height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                will-change: transform, height;
-            }
 
             &:hover {
                 color: $accent-2;
-                background-color: rgba(20, 184, 166, 0.08);
             }
 
             &.active {
                 color: $accent-2;
-                font-weight: 600;
-                background-color: rgba(20, 184, 166, 0.12);
-
-                &::before {
-                    transform: translateY(-50%) scaleY(1);
-                    height: 70%;
-                }
+                font-weight: 500;
             }
         }
     }
@@ -417,22 +382,20 @@
             position: fixed;
             top: 120px;
             right: 2rem;
-            max-width: 260px;
+            max-width: 240px;
             max-height: calc(100vh - 160px);
             z-index: 100;
-            background: linear-gradient(135deg, $grey-2 0%, color.adjust($grey-2, $lightness: 2%) 100%);
+            background: $grey-2;
             border: 1px solid $grey-3;
-            border-radius: 12px 0 0 12px;
-            padding: 1.5rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            border-radius: 4px;
+            padding: 0.875rem;
             opacity: 0;
             animation: fadeInSlide 0.5s ease forwards;
-            backdrop-filter: blur(10px);
             will-change: opacity, transform;
             contain: layout style paint;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.75rem;
             min-height: 0;
 
             // Hide if no content
@@ -445,19 +408,20 @@
                 display: flex;
                 flex-direction: column;
                 flex: 1;
-                gap: 1rem;
+                gap: 0.75rem;
                 min-height: 0;
             }
 
             .toc-title {
                 color: $white;
                 font-family: $sans-serif;
-                font-size: 0.95rem;
+                font-size: 0.875rem;
                 font-weight: 600;
                 margin: 0;
-                padding: 0.5rem 0 0.875rem 0;
-                border-bottom: 2px solid $accent-2;
-                letter-spacing: 0.3px;
+                padding: 0;
+                padding-bottom: 0.5rem;
+                border-bottom: 1px solid $grey-3;
+                letter-spacing: 0;
             }
 
             .toc-list {
@@ -470,35 +434,31 @@
                 flex: 1;
                 overflow-y: auto;
                 overflow-x: hidden;
-                margin: 0 -0.75rem -0.5rem 0;
-                padding: 0.25rem 0.75rem 0.5rem 0.5rem;
-                border-radius: 8px 0 0 8px;
-                background: rgba(255, 255, 255, 0.02);
-                backdrop-filter: blur(4px);
+                margin: 0;
+                padding: 0;
                 min-height: 0;
 
                 &::-webkit-scrollbar {
-                    width: 6px;
+                    width: 4px;
                 }
 
                 &::-webkit-scrollbar-track {
                     background: transparent;
-                    border-radius: 3px;
                 }
 
                 &::-webkit-scrollbar-thumb {
-                    background: rgba(20, 184, 166, 0.4);
-                    border-radius: 3px;
+                    background: rgba(20, 184, 166, 0.3);
+                    border-radius: 2px;
                     transition: background 0.2s ease;
 
                     &:hover {
-                        background: rgba(20, 184, 166, 0.6);
+                        background: rgba(20, 184, 166, 0.5);
                     }
                 }
             }
 
             .toc-item {
-                margin: 0.3rem 0;
+                margin: 0.2rem 0;
                 position: relative;
             }
 
@@ -506,46 +466,20 @@
                 color: $default-color;
                 text-decoration: none;
                 font-family: $sans-serif;
-                font-size: 0.875rem;
-                line-height: 1.6;
-                transition: color 0.25s ease, background-color 0.2s ease;
+                font-size: 0.8125rem;
+                line-height: 1.5;
+                transition: color 0.2s ease;
                 display: block;
-                padding: 0.35rem 0.5rem;
-                border-radius: 6px;
+                padding: 0.2rem 0;
                 position: relative;
-                margin-left: -0.5rem;
-                margin-right: -0.5rem;
-                will-change: color, background-color;
-
-                &::before {
-                    content: '';
-                    position: absolute;
-                    left: 0;
-                    top: 50%;
-                    transform: translateY(-50%) scaleY(0);
-                    width: 3px;
-                    height: 0;
-                    background-color: $accent-2;
-                    border-radius: 0 2px 2px 0;
-                    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                                height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                    will-change: transform, height;
-                }
 
                 &:hover {
                     color: $accent-2;
-                    background-color: rgba(20, 184, 166, 0.08);
                 }
 
                 &.active {
                     color: $accent-2;
-                    font-weight: 600;
-                    background-color: rgba(20, 184, 166, 0.12);
-
-                    &::before {
-                        transform: translateY(-50%) scaleY(1);
-                        height: 70%;
-                    }
+                    font-weight: 500;
                 }
             }
         }
