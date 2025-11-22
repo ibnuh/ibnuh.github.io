@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "gale/variables" as *;
+@use "gale/variables" as *;
+
 .post {
     padding: 2rem 0;
 
@@ -48,7 +52,7 @@
         transition: color 0.2s ease;
         
         &:hover {
-            color: lighten($accent-2, 10%);
+            color: color.adjust($accent-2, $lightness: 10%);
             text-decoration: none;
         }
     }
@@ -132,7 +136,7 @@
             transition: all 0.2s ease;
             
             &:hover {
-                stroke: lighten($accent-2, 10%);
+                stroke: color.adjust($accent-2, $lightness: 10%);
                 stroke-width: 3px;
             }
         }
@@ -289,7 +293,7 @@
         }
 
         .toc-wrapper {
-            background: linear-gradient(135deg, $grey-2 0%, lighten($grey-2, 2%) 100%);
+            background: linear-gradient(135deg, $grey-2 0%, color.adjust($grey-2, $lightness: 2%) 100%);
             border: 1px solid $grey-3;
             border-radius: 12px 0 0 12px;
             padding: 1.75rem;
@@ -416,7 +420,7 @@
             max-width: 260px;
             max-height: calc(100vh - 160px);
             z-index: 100;
-            background: linear-gradient(135deg, $grey-2 0%, lighten($grey-2, 2%) 100%);
+            background: linear-gradient(135deg, $grey-2 0%, color.adjust($grey-2, $lightness: 2%) 100%);
             border: 1px solid $grey-3;
             border-radius: 12px 0 0 12px;
             padding: 1.5rem;
@@ -601,10 +605,10 @@ th {
 
 tr {
     &:nth-child(even) {
-        background-color: lighten($grey-2, 3%);
+        background-color: color.adjust($grey-2, $lightness: 3%);
     }
     
     &:hover {
-        background-color: lighten($grey-2, 5%);
+        background-color: color.adjust($grey-2, $lightness: 5%);
     }
 }

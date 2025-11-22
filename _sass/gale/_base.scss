@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "gale/variables" as *;
+
 * {
     @include box-sizing;
     line-height: 1.6;
@@ -79,7 +82,7 @@ a {
     transition: color 0.2s ease;
     
     &:hover {
-        color: lighten($accent-2, 10%);
+        color: color.adjust($accent-2, $lightness: 10%);
     }
 }
 
