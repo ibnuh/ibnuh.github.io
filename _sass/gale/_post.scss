@@ -440,6 +440,7 @@
                 border-left: none;
                 border-radius: 0 4px 4px 0;
                 padding: 0;
+                width: 0;
                 max-width: 0;
                 max-height: calc(100vh - 160px);
                 display: flex;
@@ -448,14 +449,16 @@
                 min-height: 0;
                 opacity: 0;
                 transform: translateX(20px);
-                transition: opacity 0.3s ease, transform 0.3s ease, max-width 0.3s ease, padding 0.3s ease;
+                transition: opacity 0.3s ease, transform 0.3s ease, width 0.3s ease, max-width 0.3s ease, padding 0.3s ease;
                 pointer-events: none;
                 overflow: hidden;
+                box-sizing: border-box;
 
                 &.visible {
                     opacity: 1;
                     transform: translateX(0);
                     pointer-events: auto;
+                    width: 240px;
                     max-width: 240px;
                     padding: 0.875rem;
                 }
@@ -465,6 +468,7 @@
                     opacity: 1;
                     transform: translateX(0);
                     pointer-events: auto;
+                    width: 240px;
                     max-width: 240px;
                     padding: 0.875rem;
                     border-left: 1px solid $grey-3;
@@ -478,6 +482,7 @@
                     opacity: 0;
                     transform: translateX(20px);
                     pointer-events: none;
+                    width: 0;
                     max-width: 0;
                     padding: 0;
 
@@ -486,6 +491,7 @@
                         opacity: 1;
                         transform: translateX(0);
                         pointer-events: auto;
+                        width: 240px;
                         max-width: 240px;
                         padding: 0.875rem;
                     }
@@ -526,6 +532,8 @@
                 margin: 0;
                 padding: 0;
                 min-height: 0;
+                width: 100%;
+                box-sizing: border-box;
 
                 &::-webkit-scrollbar {
                     width: 4px;
@@ -549,6 +557,8 @@
             .toc-item {
                 margin: 0.2rem 0;
                 position: relative;
+                width: 100%;
+                box-sizing: border-box;
             }
 
             .toc-link {
@@ -561,6 +571,10 @@
                 display: block;
                 padding: 0.2rem 0;
                 position: relative;
+                width: 100%;
+                box-sizing: border-box;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
 
                 &:hover {
                     color: $accent-2;
