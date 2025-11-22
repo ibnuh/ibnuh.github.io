@@ -256,7 +256,7 @@
                 tocList.innerHTML = tocHTML;
 
                 // Helper to build TOC wrapper with scrollable list container
-                function appendTOC(target) {
+                function appendTOC(target, isDesktop) {
                     if (!target) return;
 
                     const wrapper = document.createElement('div');
@@ -270,11 +270,93 @@
 
                     wrapper.appendChild(title);
                     wrapper.appendChild(listContainer);
-                    target.appendChild(wrapper);
+
+                    if (isDesktop) {
+                        // Create container for desktop TOC
+                        const container = document.createElement('div');
+                        container.className = 'toc-container';
+                        container.appendChild(wrapper);
+                        target.appendChild(container);
+
+                        // Function to check if we're on a large screen
+                        function isLargeScreen() {
+                            return window.innerWidth >= 1400;
+                        }
+
+                        // Function to setup TOC based on screen size
+                        function setupTOC() {
+                            if (isLargeScreen()) {
+                                // Large screen: always show TOC, no toggle button
+                                target.classList.remove('hidden');
+                                container.classList.add('visible');
+                                // Remove toggle button if it exists
+                                const existingToggle = target.querySelector('.toc-toggle');
+                                if (existingToggle) {
+                                    existingToggle.remove();
+                                }
+                            } else {
+                                // Medium screen: use toggle functionality
+                                let toggleButton = target.querySelector('.toc-toggle');
+                                
+                                if (!toggleButton) {
+                                    // Create toggle button
+                                    toggleButton = document.createElement('button');
+                                    toggleButton.className = 'toc-toggle';
+                                    toggleButton.setAttribute('aria-label', 'Toggle Table of Contents');
+                                    target.insertBefore(toggleButton, container);
+                                }
+
+                                // Toggle functionality
+                                const isHidden = localStorage.getItem('toc-desktop-hidden') !== 'false'; // Default to hidden
+                                if (isHidden) {
+                                    target.classList.add('hidden');
+                                    // Left arrow when hidden (click to show)
+                                    toggleButton.innerHTML = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>';
+                                } else {
+                                    container.classList.add('visible');
+                                    // Right arrow when visible (click to hide)
+                                    toggleButton.innerHTML = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>';
+                                }
+
+                                // Remove existing listeners by cloning and replacing
+                                const newToggleButton = toggleButton.cloneNode(true);
+                                toggleButton.parentNode.replaceChild(newToggleButton, toggleButton);
+
+                                newToggleButton.addEventListener('click', function() {
+                                    const isCurrentlyHidden = target.classList.contains('hidden');
+                                    if (isCurrentlyHidden) {
+                                        target.classList.remove('hidden');
+                                        container.classList.add('visible');
+                                        // Right arrow when visible (click to hide)
+                                        newToggleButton.innerHTML = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>';
+                                        localStorage.setItem('toc-desktop-hidden', 'false');
+                                    } else {
+                                        target.classList.add('hidden');
+                                        container.classList.remove('visible');
+                                        // Left arrow when hidden (click to show)
+                                        newToggleButton.innerHTML = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>';
+                                        localStorage.setItem('toc-desktop-hidden', 'true');
+                                    }
+                                });
+                            }
+                        }
+
+                        // Initial setup
+                        setupTOC();
+
+                        // Handle window resize
+                        let resizeTimeout;
+                        window.addEventListener('resize', function() {
+                            clearTimeout(resizeTimeout);
+                            resizeTimeout = setTimeout(setupTOC, 150);
+                        });
+                    } else {
+                        target.appendChild(wrapper);
+                    }
                 }
 
-                appendTOC(tocMobile);
-                appendTOC(tocDesktop);
+                appendTOC(tocMobile, false);
+                appendTOC(tocDesktop, true);
 
                 // Smooth scroll for TOC links
                 const tocLinks = document.querySelectorAll('.toc-link');
@@ -336,9 +418,11 @@
                         if (wasActive !== shouldBeActive) {
                             if (shouldBeActive) {
                                 link.classList.add('active');
-                                // Scroll active item into view in desktop TOC (only if needed)
+                                // Scroll active item into view in desktop TOC (only if needed and visible)
+                                const tocDesktop = document.getElementById('toc-desktop');
                                 const desktopListContainer = document.querySelector('.toc-desktop .toc-list-container');
-                                if (desktopListContainer && desktopListContainer.contains(link) && window.innerWidth >= 1024) {
+                                if (desktopListContainer && desktopListContainer.contains(link) && window.innerWidth >= 1024 && 
+                                    tocDesktop && !tocDesktop.classList.contains('hidden')) {
                                     const containerHeight = desktopListContainer.clientHeight;
                                     const containerScrollTop = desktopListContainer.scrollTop;
                                     const linkTop = link.offsetTop;
