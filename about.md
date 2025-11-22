@@ -9,7 +9,7 @@ permalink: /about/
 </div>
 
 👋 **Hello there!**  
-I’m Ibnuh, a passionate software engineer specializing in backend development. I enjoy writing clean, efficient, and maintainable code while following best practices to build reliable software. Over the years, I’ve worked with various businesses, remotely collaborating with global teams to develop applications that solve real-world problems. I’m always eager to learn and improve my skills to stay ahead in the ever-evolving tech landscape.
+I'm Ibnuh, a passionate software engineer specializing in backend development. I enjoy writing clean, efficient, and maintainable code while following best practices to build reliable software. Over the years, I've worked with various businesses, remotely collaborating with global teams to develop applications that solve real-world problems. I'm always eager to learn and improve my skills to stay ahead in the ever-evolving tech landscape.
 
 Since my full name, **M. Ibnu Luthfi Azhar**, is quite long, I go by Ibnuh online.
 
