@@ -1,6 +1,3 @@
-@use "sass:color";
-@use "gale/variables" as *;
-
 pre,
 code {
     font-family: $monospaced;
@@ -17,7 +14,7 @@ code {
     transition: background-color 0.2s ease;
     
     &:hover {
-        background-color: color.adjust($grey-4, $lightness: 5%);
+        background-color: lighten($grey-4, 5%);
     }
 }
 
@@ -97,6 +94,6 @@ p code {
     transition: background-color 0.2s ease;
     
     &:hover {
-        background-color: color.adjust($grey-4, $lightness: 5%);
+        background-color: lighten($grey-4, 5%);
     }
 }
