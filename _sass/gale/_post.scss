@@ -417,7 +417,7 @@
                 flex-shrink: 0;
 
                 &:hover {
-                    background: color.adjust($grey-2, $lightness: 3%);
+                    background: lighten($grey-2, 3%);
                     color: $accent-2;
                 }
 
