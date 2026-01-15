@@ -1,32 +1,40 @@
 .post {
     padding: 2rem 0;
-
-    @media (min-width: 600px) {
-        font-size: 1.1rem;
-    }
+    
+    // Optimal reading width for body text (45-75 characters per line)
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
 
     &-info {
         color: $default-tint;
-        font-family: $serif-primary;
-        letter-spacing: 0.5px;
+        font-family: $heading-font;
+        font-size: $font-size-sm;
+        font-weight: 500;
+        letter-spacing: $letter-spacing-wide;
         text-align: center;
         margin-bottom: 1rem;
+        text-transform: uppercase;
 
         span {
-            font-style: italic;
+            font-style: normal;
         }
     }
 
     &-title {
         color: $white;
-        font-family: $sans-serif;
-        font-size: 2.5rem;
-        margin: 1rem 0;
+        font-family: $heading-font;
+        font-size: $font-size-4xl;
+        margin: 1rem 0 1.5rem;
         text-align: center;
-        font-weight: 600;
-
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        text-wrap: balance;
+        
         @media (max-width: 600px) {
-            font-size: 2rem;
+            font-size: $font-size-3xl;
+            line-height: 1.15;
         }
     }
 
@@ -35,22 +43,73 @@
         display: block;
         margin: 0 auto 3rem;
         width: 4rem;
+        
+        @media (max-width: 600px) {
+            margin-bottom: 2rem;
+        }
     }
 
     p {
-        margin: 0 0 1.5rem;
-        line-height: 1.8;
+        margin: 0 0 1.5em;
+        line-height: $line-height-loose;
+        font-size: $font-size-base;
+        letter-spacing: 0.01em;
+        word-spacing: 0.05em;
+        
+        // Hyphenation for better text flow
+        hyphens: auto;
+        -webkit-hyphens: auto;
+        
+        @media (max-width: 600px) {
+            line-height: $line-height-relaxed;
+            margin-bottom: 1.25em;
+            hyphens: manual; // Disable auto-hyphenation on mobile for cleaner look
+        }
     }
+    
 
     a {
         color: $accent-2;
-        text-decoration: none;
-        transition: color 0.2s ease;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 2px;
+        transition: all 0.2s ease;
         
         &:hover {
             color: lighten($accent-2, 10%);
-            text-decoration: none;
+            text-decoration-thickness: 2px;
         }
+    }
+
+    // Lists with better spacing
+    ul, ol {
+        margin: 0 0 1.5em;
+        padding-left: 1.5em;
+        
+        li {
+            margin-bottom: 0.5em;
+            line-height: $line-height-relaxed;
+            
+            &::marker {
+                color: $accent-2;
+            }
+        }
+        
+        // Nested lists
+        ul, ol {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+    }
+    
+    // Stronger emphasis
+    strong, b {
+        font-weight: 600;
+        color: $white;
+    }
+    
+    em, i {
+        font-style: italic;
     }
 
     img {
@@ -62,12 +121,14 @@
     img + em {
         color: $default-tint;
         display: block;
-        font-family: $sans-serif;
-        font-size: 0.9rem;
+        font-family: $heading-font;
+        font-size: $font-size-sm;
         font-style: normal;
+        font-weight: 500;
         text-align: center;
         margin-top: -1.5rem;
         margin-bottom: 2rem;
+        letter-spacing: 0;
     }
 
     // CSS for making emoji inline
@@ -116,7 +177,7 @@
 
         // Ensure text is readable with blog's typography
         .label {
-            font-family: $sans-serif;
+            font-family: $heading-font;
             font-size: 0.9rem;
             font-weight: 500;
             color: $default-color;
@@ -170,7 +231,7 @@
         .cluster-label {
             font-weight: 600;
             font-size: 1rem;
-            font-family: $sans-serif;
+            font-family: $heading-font;
             color: $accent-2;
         }
 
@@ -180,13 +241,13 @@
             border: 2px solid $accent-1;
             border-radius: 6px;
             color: $default-shade;
-            font-family: $sans-serif;
+            font-family: $heading-font;
             font-weight: 500;
         }
 
         // Style titles
         .title {
-            font-family: $sans-serif;
+            font-family: $heading-font;
             font-weight: 600;
             font-size: 1.1rem;
             color: $white;
@@ -205,7 +266,7 @@
         }
 
         .loopText {
-            font-family: $sans-serif;
+            font-family: $heading-font;
             font-weight: 500;
             color: $accent-3;
         }
@@ -229,7 +290,7 @@
         }
 
         .stateLabel {
-            font-family: $sans-serif;
+            font-family: $heading-font;
             font-weight: 500;
             color: $default-color;
         }
@@ -241,7 +302,7 @@
         }
 
         .taskText {
-            font-family: $sans-serif;
+            font-family: $heading-font;
             font-size: 0.85rem;
             color: $default-shade;
             font-weight: 600;
@@ -249,7 +310,7 @@
 
         // Style pie chart elements
         .pieTitleText {
-            font-family: $sans-serif;
+            font-family: $heading-font;
             font-weight: 600;
             font-size: 1rem;
             color: $white;
@@ -272,7 +333,7 @@
     // Table of Contents
     .toc-mobile {
         display: block;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
         opacity: 0;
         animation: fadeIn 0.4s ease forwards;
         will-change: opacity;
@@ -289,27 +350,41 @@
         }
 
         .toc-wrapper {
-            background: $grey-2;
+            background: linear-gradient(135deg, $grey-2 0%, darken($grey-2, 2%) 100%);
             border: 1px solid $grey-3;
-            border-radius: 4px;
-            padding: 1rem;
+            border-left: 3px solid $accent-2;
+            border-radius: 0 8px 8px 0;
+            padding: 1.25rem;
             margin-bottom: 0;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 1rem;
             min-height: 0;
         }
 
         .toc-title {
             color: $white;
-            font-family: $sans-serif;
-            font-size: 0.95rem;
+            font-family: $heading-font;
+            font-size: $font-size-sm;
             font-weight: 600;
             margin: 0;
             padding: 0;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.75rem;
             border-bottom: 1px solid $grey-3;
-            letter-spacing: 0;
+            letter-spacing: $letter-spacing-wide;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            
+            &::before {
+                content: '';
+                display: inline-block;
+                width: 4px;
+                height: 4px;
+                background: $accent-2;
+                border-radius: 50%;
+            }
         }
 
         .toc-list {
@@ -344,28 +419,36 @@
         }
 
         .toc-item {
-            margin: 0.25rem 0;
+            margin: 0.15rem 0;
             position: relative;
         }
 
         .toc-link {
             color: $default-color;
             text-decoration: none;
-            font-family: $sans-serif;
-            font-size: 0.875rem;
-            line-height: 1.5;
-            transition: color 0.2s ease;
+            font-family: $heading-font;
+            font-size: $font-size-sm;
+            font-weight: 400;
+            line-height: $line-height-snug;
+            transition: all 0.2s ease;
             display: block;
-            padding: 0.25rem 0;
+            padding: 0.35rem 0.75rem;
             position: relative;
+            border-radius: 4px;
+            border-left: 2px solid transparent;
+            margin-left: -0.75rem;
 
             &:hover {
                 color: $accent-2;
+                background: rgba($accent-2, 0.05);
+                border-left-color: rgba($accent-2, 0.3);
             }
 
             &.active {
                 color: $accent-2;
                 font-weight: 500;
+                background: rgba($accent-2, 0.1);
+                border-left-color: $accent-2;
             }
         }
     }
@@ -391,13 +474,13 @@
             // Toggle button - only visible on medium screens
             .toc-toggle {
                 position: relative;
-                width: 2rem;
-                height: 2rem;
-                min-width: 2rem;
-                background: $grey-2;
+                width: 2.25rem;
+                height: 2.25rem;
+                min-width: 2.25rem;
+                background: linear-gradient(135deg, $grey-2 0%, darken($grey-2, 2%) 100%);
                 border: 1px solid $grey-3;
                 border-right: none;
-                border-radius: 4px 0 0 4px;
+                border-radius: 6px 0 0 6px;
                 cursor: pointer;
                 display: flex;
                 align-items: center;
@@ -409,8 +492,9 @@
                 flex-shrink: 0;
 
                 &:hover {
-                    background: lighten($grey-2, 3%);
+                    background: linear-gradient(135deg, lighten($grey-2, 3%) 0%, $grey-2 100%);
                     color: $accent-2;
+                    border-color: rgba($accent-2, 0.3);
                 }
 
                 &:active {
@@ -431,10 +515,10 @@
 
             // TOC container
             .toc-container {
-                background: $grey-2;
+                background: linear-gradient(135deg, $grey-2 0%, darken($grey-2, 2%) 100%);
                 border: 1px solid $grey-3;
-                border-left: none;
-                border-radius: 0 4px 4px 0;
+                border-left: 3px solid $accent-2;
+                border-radius: 0 8px 8px 0;
                 padding: 0;
                 width: 0;
                 max-width: 0;
@@ -449,14 +533,15 @@
                 pointer-events: none;
                 overflow: hidden;
                 box-sizing: border-box;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 
                 &.visible {
                     opacity: 1;
                     transform: translateX(0);
                     pointer-events: auto;
-                    width: 240px;
-                    max-width: 240px;
-                    padding: 0.875rem;
+                    width: 260px;
+                    max-width: 260px;
+                    padding: 1rem;
                 }
 
                 // On large screens, always show (no toggle needed)
@@ -464,11 +549,11 @@
                     opacity: 1;
                     transform: translateX(0);
                     pointer-events: auto;
-                    width: 240px;
-                    max-width: 240px;
-                    padding: 0.875rem;
-                    border-left: 1px solid $grey-3;
-                    border-radius: 4px;
+                    width: 260px;
+                    max-width: 260px;
+                    padding: 1rem;
+                    border-left: 3px solid $accent-2;
+                    border-radius: 0 8px 8px 0;
                 }
             }
 
@@ -487,9 +572,9 @@
                         opacity: 1;
                         transform: translateX(0);
                         pointer-events: auto;
-                        width: 240px;
-                        max-width: 240px;
-                        padding: 0.875rem;
+                        width: 260px;
+                        max-width: 260px;
+                        padding: 1rem;
                     }
                 }
             }
@@ -505,14 +590,27 @@
 
             .toc-title {
                 color: $white;
-                font-family: $sans-serif;
-                font-size: 0.875rem;
+                font-family: $heading-font;
+                font-size: $font-size-xs;
                 font-weight: 600;
                 margin: 0;
                 padding: 0;
-                padding-bottom: 0.5rem;
+                padding-bottom: 0.75rem;
                 border-bottom: 1px solid $grey-3;
-                letter-spacing: 0;
+                letter-spacing: $letter-spacing-wide;
+                text-transform: uppercase;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                
+                &::before {
+                    content: '';
+                    display: inline-block;
+                    width: 4px;
+                    height: 4px;
+                    background: $accent-2;
+                    border-radius: 50%;
+                }
             }
 
             .toc-list {
@@ -551,7 +649,7 @@
             }
 
             .toc-item {
-                margin: 0.2rem 0;
+                margin: 0.1rem 0;
                 position: relative;
                 width: 100%;
                 box-sizing: border-box;
@@ -560,31 +658,39 @@
             .toc-link {
                 color: $default-color;
                 text-decoration: none;
-                font-family: $sans-serif;
-                font-size: 0.8125rem;
-                line-height: 1.5;
-                transition: color 0.2s ease;
+                font-family: $heading-font;
+                font-size: $font-size-xs;
+                font-weight: 400;
+                line-height: $line-height-snug;
+                transition: all 0.2s ease;
                 display: block;
-                padding: 0.2rem 0;
+                padding: 0.3rem 0.6rem;
                 position: relative;
                 width: 100%;
                 box-sizing: border-box;
                 word-wrap: break-word;
                 overflow-wrap: break-word;
+                border-radius: 4px;
+                border-left: 2px solid transparent;
+                margin-left: -0.6rem;
 
                 &:hover {
                     color: $accent-2;
+                    background: rgba($accent-2, 0.05);
+                    border-left-color: rgba($accent-2, 0.3);
                 }
 
                 &.active {
                     color: $accent-2;
                     font-weight: 500;
+                    background: rgba($accent-2, 0.1);
+                    border-left-color: $accent-2;
                 }
             }
         }
 
         @media (min-width: 1400px) {
-            right: calc((100vw - 1200px) / 2 - 300px);
+            right: calc((100vw - 1200px) / 2 - 320px);
         }
     }
 
@@ -622,18 +728,41 @@ table {
     background-color: $grey-2;
     border-radius: 4px;
     overflow: hidden;
+    font-family: $serif-primary;
+    font-size: $font-size-sm;
+    
+    @media (max-width: 600px) {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 1.5rem -1.25rem;
+        width: calc(100% + 2.5rem);
+        border-radius: 0;
+    }
 }
 
 th, td {
-    padding: 1rem;
-    font-size: 1rem;
+    padding: 0.875rem 1rem;
+    font-size: $font-size-sm;
     border: 1px solid $grey-3;
+    line-height: $line-height-normal;
+    text-align: left;
+    
+    @media (max-width: 600px) {
+        padding: 0.75rem;
+        font-size: $font-size-xs;
+        white-space: nowrap;
+    }
 }
 
 th {
     background-color: $grey-3;
+    font-family: $heading-font;
     font-weight: 600;
     color: $white;
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: $font-size-sm;
 }
 
 tr {

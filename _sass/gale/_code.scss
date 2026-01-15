@@ -1,17 +1,19 @@
 pre,
 code {
     font-family: $monospaced;
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: $font-size-sm;
+    line-height: 1.6;
 }
 
 code {
     background-color: $grey-4;
     border-radius: 4px;
     color: $code-color;
-    font-size: 0.85em;
-    padding: 0.2em 0.4em;
+    font-size: 0.875em;
+    padding: 0.15em 0.4em;
     transition: background-color 0.2s ease;
+    font-weight: 400;
+    letter-spacing: -0.01em;
     
     &:hover {
         background-color: lighten($grey-4, 5%);
@@ -19,8 +21,13 @@ code {
 }
 
 pre {
-    margin: 1.5rem 0;
+    margin: 2rem 0;
     position: relative;
+    
+    @media (max-width: 600px) {
+        margin: 1.5rem -1.25rem;
+        border-radius: 0;
+    }
     
     &::before {
         content: '';
@@ -31,6 +38,10 @@ pre {
         height: 2px;
         background: $accent-1;
         border-radius: 4px 4px 0 0;
+        
+        @media (max-width: 600px) {
+            border-radius: 0;
+        }
     }
 }
 
@@ -39,11 +50,18 @@ pre code {
     border-radius: 4px;
     color: $default-color;
     display: block;
-    font-size: 0.9em;
+    font-size: 0.875em;
     padding: 1.5rem;
     overflow-x: auto;
     white-space: pre;
     box-shadow: 0 4px 6px $shadow-color;
+    line-height: 1.6;
+    
+    @media (max-width: 600px) {
+        padding: 1.25rem;
+        font-size: 0.8125em;
+        border-radius: 0;
+    }
 }
 
 .highlight {
@@ -84,14 +102,24 @@ pre code {
     .nv { color: $accent-3; }     // Variables
 }
 
-// Inline code block
-p code {
+// Inline code block - in paragraphs, lists, headings
+p code,
+li code,
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code,
+td code {
     background-color: $grey-4;
     border-radius: 4px;
     color: $code-color;
-    font-size: 0.85em;
-    padding: 0.2em 0.4em;
+    font-size: 0.875em;
+    padding: 0.15em 0.4em;
     transition: background-color 0.2s ease;
+    font-weight: 400;
+    word-break: break-word;
     
     &:hover {
         background-color: lighten($grey-4, 5%);

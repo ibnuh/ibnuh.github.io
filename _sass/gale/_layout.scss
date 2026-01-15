@@ -2,6 +2,10 @@
     margin: 0 auto;
     max-width: 1200px;
     padding: 0 2rem;
+    
+    @media (max-width: 600px) {
+        padding: 0 1.25rem;
+    }
 }
 
 main,
@@ -11,6 +15,10 @@ footer,
     margin: 0 auto;
     max-width: 1200px;
     padding: 0 2rem;
+    
+    @media (max-width: 600px) {
+        padding: 0 1.25rem;
+    }
 }
 
 .nav {
@@ -18,7 +26,11 @@ footer,
     box-shadow: 0 2px 4px $shadow-color;
     margin: 0;
     overflow: auto;
-    padding: 1.5rem 0;
+    padding: 1.25rem 0;
+
+    @media (max-width: 600px) {
+        padding: 1rem 0;
+    }
 
     &-container {
         margin: 0 auto;
@@ -29,6 +41,11 @@ footer,
         gap: 1rem;
         max-width: 1200px;
         padding: 0 2rem;
+        
+        @media (max-width: 600px) {
+            padding: 0 1.25rem;
+            gap: 0.75rem;
+        }
     }
 
     &-title {
@@ -36,9 +53,10 @@ footer,
         color: $white;
         display: inline-block;
         margin: 0;
-        font-weight: 600;
-        font-size: 1.75rem;
-        letter-spacing: -0.5px;
+        font-weight: 700;
+        font-size: $font-size-xl;
+        letter-spacing: -0.02em;
+        font-family: $heading-font;
 
         &:hover,
         &:focus {
@@ -54,7 +72,7 @@ footer,
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 0.75rem;
+        gap: 0.5rem;
     }
 
     li {
@@ -62,6 +80,7 @@ footer,
         opacity: 0.9;
         background-color: $grey-3;
         border: 1px solid transparent;
+        border-radius: 4px;
 
         &:hover,
         &:focus {
@@ -72,10 +91,10 @@ footer,
 
     a {
         color: $default-color;
-        font-family: $sans-serif;
+        font-family: $heading-font;
         font-weight: 500;
-        font-size: 0.95rem;
-        letter-spacing: 0.3px;
+        font-size: $font-size-sm;
+        letter-spacing: 0;
         display: block;
         text-decoration: none;
 
@@ -88,6 +107,10 @@ footer,
     // Style for navigation links only
     ul a {
         padding: 0.5rem 1rem;
+        
+        @media (max-width: 600px) {
+            padding: 0.4rem 0.75rem;
+        }
     }
 }
 
@@ -109,11 +132,16 @@ footer,
 }
 
 footer {
-    font-family: $serif-primary;
-    padding: 2rem 0;
+    font-family: $heading-font;
+    padding: 2.5rem 0;
     text-align: center;
     border-top: 1px solid $grey-2;
-    margin-top: 3rem;
+    margin-top: 4rem;
+
+    @media (max-width: 600px) {
+        padding: 2rem 0;
+        margin-top: 3rem;
+    }
 
     .footer-content {
         display: flex;
@@ -138,7 +166,10 @@ footer {
 
     span {
         color: $default-tint;
-        font-size: 0.9rem;
+        font-family: $heading-font;
+        font-size: $font-size-sm;
+        font-weight: 500;
+        letter-spacing: 0;
     }
 }
 

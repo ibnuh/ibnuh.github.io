@@ -1,20 +1,23 @@
 .pagination {
     border-top: 0.5px solid $grey-2;
-    font-family: $serif-primary;
+    font-family: $heading-font;
     padding-top: 2rem;
     position: relative;
     text-align: center;
 
     span {
         color: $default-shade;
-        font-size: 1.1rem;
+        font-size: $font-size-base;
     }
 
     .top {
         @include transition(all 0.3s ease-out);
         color: $default-color;
-        font-family: $sans-serif;
-        font-size: 1.1rem;
+        font-family: $heading-font;
+        font-size: $font-size-sm;
+        font-weight: 500;
+        letter-spacing: $letter-spacing-wide;
+        text-transform: uppercase;
         opacity: 0.6;
 
         &:hover {
