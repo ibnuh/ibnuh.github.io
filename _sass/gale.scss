@@ -1,8 +1,7 @@
-@import 'gale/variables';
-@import 'gale/base';
-@import 'gale/code';
-@import 'gale/post';
-@import 'gale/syntax';
-@import 'gale/layout';
-@import 'gale/pagination';
-@import 'gale/catalogue'; 
+@use 'gale/base';
+@use 'gale/code';
+@use 'gale/post';
+@use 'gale/syntax';
+@use 'gale/layout';
+@use 'gale/pagination';
+@use 'gale/catalogue';

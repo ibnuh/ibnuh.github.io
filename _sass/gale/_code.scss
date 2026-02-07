@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 pre,
 code {
     font-family: $monospaced;
@@ -16,7 +18,7 @@ code {
     letter-spacing: -0.01em;
     
     &:hover {
-        background-color: lighten($grey-4, 5%);
+        background-color: $grey-4-light;
     }
 }
 
@@ -122,6 +124,6 @@ td code {
     word-break: break-word;
     
     &:hover {
-        background-color: lighten($grey-4, 5%);
+        background-color: $grey-4-light;
     }
 }

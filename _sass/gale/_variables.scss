@@ -16,6 +16,13 @@ $accent-1: #f59e0b;  // Amber
 $accent-2: #14b8a6;  // Teal
 $accent-3: #f97316;  // Orange
 
+// Pre-computed color variants (avoids deprecated lighten/darken functions)
+$accent-2-light: #19e6d0;    // lighten($accent-2, 10%)
+$grey-2-dark: #282828;       // darken($grey-2, 2%)
+$grey-2-light-3: #353535;    // lighten($grey-2, 3%)
+$grey-2-light-5: #3a3a3a;    // lighten($grey-2, 5%)
+$grey-4-light: #413c3c;      // lighten($grey-4, 5%)
+
 // Fonts
 // Lora - elegant serif for body text (great readability)
 // Space Grotesk - modern geometric sans-serif for headings (distinctive character)

@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 .post {
     padding: 2rem 0;
     
@@ -76,7 +78,7 @@
         transition: all 0.2s ease;
         
         &:hover {
-            color: lighten($accent-2, 10%);
+            color: $accent-2-light;
             text-decoration-thickness: 2px;
         }
     }
@@ -193,7 +195,7 @@
             transition: all 0.2s ease;
             
             &:hover {
-                stroke: lighten($accent-2, 10%);
+                stroke: $accent-2-light;
                 stroke-width: 3px;
             }
         }
@@ -350,7 +352,7 @@
         }
 
         .toc-wrapper {
-            background: linear-gradient(135deg, $grey-2 0%, darken($grey-2, 2%) 100%);
+            background: linear-gradient(135deg, $grey-2 0%, $grey-2-dark 100%);
             border: 1px solid $grey-3;
             border-left: 3px solid $accent-2;
             border-radius: 0 8px 8px 0;
@@ -477,7 +479,7 @@
                 width: 2.25rem;
                 height: 2.25rem;
                 min-width: 2.25rem;
-                background: linear-gradient(135deg, $grey-2 0%, darken($grey-2, 2%) 100%);
+                background: linear-gradient(135deg, $grey-2 0%, $grey-2-dark 100%);
                 border: 1px solid $grey-3;
                 border-right: none;
                 border-radius: 6px 0 0 6px;
@@ -492,7 +494,7 @@
                 flex-shrink: 0;
 
                 &:hover {
-                    background: linear-gradient(135deg, lighten($grey-2, 3%) 0%, $grey-2 100%);
+                    background: linear-gradient(135deg, $grey-2-light-3 0%, $grey-2 100%);
                     color: $accent-2;
                     border-color: rgba($accent-2, 0.3);
                 }
@@ -515,7 +517,7 @@
 
             // TOC container
             .toc-container {
-                background: linear-gradient(135deg, $grey-2 0%, darken($grey-2, 2%) 100%);
+                background: linear-gradient(135deg, $grey-2 0%, $grey-2-dark 100%);
                 border: 1px solid $grey-3;
                 border-left: 3px solid $accent-2;
                 border-radius: 0 8px 8px 0;
@@ -767,10 +769,10 @@ th {
 
 tr {
     &:nth-child(even) {
-        background-color: lighten($grey-2, 3%);
+        background-color: $grey-2-light-3;
     }
     
     &:hover {
-        background-color: lighten($grey-2, 5%);
+        background-color: $grey-2-light-5;
     }
 }

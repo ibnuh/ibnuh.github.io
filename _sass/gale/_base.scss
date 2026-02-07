@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 * {
     @include box-sizing;
 }
@@ -165,7 +167,7 @@ a {
     transition: color 0.2s ease;
     
     &:hover {
-        color: lighten($accent-2, 10%);
+        color: $accent-2-light;
     }
 }
 
