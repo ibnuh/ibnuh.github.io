@@ -4,19 +4,9 @@ title: 'Center active window using AutoHotkey'
 date: 2025-01-25 14:57:00 +0700
 ---
 
-_A simple solution for centering windows across multiple monitors._
-
-Managing windows across multiple displays can be cumbersome. While Windows offers basic snapping functionality, precisely centering windows requires manual repositioning. This post presents a concise AutoHotkey script that automates window centering with a simple keyboard shortcut.
+I use multiple monitors and I kept wanting to center a window on whatever screen I was looking at. Windows doesn't have a shortcut for that, so I wrote a quick AutoHotkey script. Hit `Win + C` and it centers the active window on its current monitor, accounting for the taskbar. Works on multiple monitors and ultrawides.
 
 ### The script
-
-Features:
-
-- Hotkey: `Win + C` for instant centering
-- Automatically detects which monitor contains the active window
-- Respects taskbar positioning and reserved screen space
-- Compatible with Windows 10/11 and AutoHotkey v2
-- Works with multiple monitors, including ultrawide displays
 
 ```javascript
 ; Center active window
@@ -43,43 +33,39 @@ Features:
 }
 ```
 
-### Implementation guide
+### Setup
 
-1. **Install AutoHotkey v2+** ([Download here](https://www.autohotkey.com/)).
-2. **Save the script** with a `.ahk` extension, such as `CenterWindow.ahk`.
-3. **Execute the script** by right-clicking and selecting "Run Script". For persistent availability, [add it to startup](https://www.autohotkey.com/docs/v2/FAQ.htm#Startup).
+1. Install [AutoHotkey v2+](https://www.autohotkey.com/).
+2. Save the script as a `.ahk` file, like `CenterWindow.ahk`.
+3. Run the script by right-clicking and selecting "Run Script". If you want it to run on startup, [follow this](https://www.autohotkey.com/docs/v2/FAQ.htm#Startup).
 
-### Customization options
+### Changing the hotkey
 
-- **Alternative hotkeys**: Modify `#c` to use different key combinations:
-  - `^!c` for `Ctrl + Alt + C`
-  - `#!Down` for `Win + Alt + Down Arrow`
+You can change `#c` to whatever key combo you prefer:
+- `^!c` for `Ctrl + Alt + C`
+- `#!Down` for `Win + Alt + Down Arrow`
 
-  Reference the [AutoHotkey Hotkey Documentation](https://www.autohotkey.com/docs/v2/howto/WriteHotkeys.htm) for more options.
+Check the [AutoHotkey hotkey docs](https://www.autohotkey.com/docs/v2/howto/WriteHotkeys.htm) for more options. You can also add [smooth transitions](https://www.autohotkey.com/docs/v2/lib/WinMove.htm#Remarks) if you want animation.
 
-- **Add animation**: Implement [smooth transitions](https://www.autohotkey.com/docs/v2/lib/WinMove.htm#Remarks) if desired.
+### Things to know
 
-### Known limitations
-
-- **Administrative windows** (Task Manager, elevated Command Prompt) require running the script with administrative privileges.
-- **Fullscreen applications** may ignore window positioning commands.
-- **Ultrawide monitor users** can adjust horizontal positioning by modifying the centering calculation:
+- Admin windows (Task Manager, elevated Command Prompt) need the script to run as admin too.
+- Fullscreen apps might ignore the window positioning.
+- On ultrawides, you can tweak the horizontal positioning:
   ```javascript
   newX := monitorLeft + (monitorRight - monitorLeft - W) / 3  ; Position 1/3 from left
   ```
 
 ### How it works
 
-The script functions through three key mechanisms:
+Here's what the script does step by step:
 
-**1. Position detection**
 ```javascript
 CoordMode("Mouse", "Screen")
 MouseGetPos(&mouseX, &mouseY)
 ```
-This establishes screen-level coordinates to handle multi-monitor setups properly.
+This tells AutoHotkey to use screen coordinates instead of window-relative ones, which matters when you have multiple monitors.
 
-**2. Monitor identification**
 ```javascript
 Loop MonitorGetCount() {
     MonitorGetWorkArea(A_Index, &mLeft, &mTop, &mRight, &mBottom)
@@ -89,15 +75,10 @@ Loop MonitorGetCount() {
     }
 }
 ```
-This loop determines which monitor contains the active window by comparing window coordinates against each display's boundaries.
+This loops through all monitors and checks which one the window is actually on by comparing the window position against each monitor's boundaries.
 
-**3. Centering calculation**
 ```javascript
 newX := monitorLeft + (monitorRight - monitorLeft - W) / 2
 newY := monitorTop + (monitorBottom - monitorTop - H) / 2
 ```
-These formulas calculate the optimal window position, accounting for usable screen area (excluding taskbars and docks) and window dimensions.
-
-### Conclusion
-
-This lightweight AutoHotkey solution provides efficient window management across multiple displays. With a single keyboard shortcut, you can instantly center any window on its current monitor, eliminating manual repositioning.
+Then it calculates the center position using the monitor's usable area (minus taskbar and docks) and the window size.

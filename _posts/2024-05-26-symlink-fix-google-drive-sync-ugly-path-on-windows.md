@@ -41,4 +41,4 @@ If you have multiple Google Drive accounts, you can create additional symlinks a
 New-Item -ItemType SymbolicLink -Path E:\DriveRedacted -target "E:\Google\ibnuh@REDACTED.com\My Drive"
 ```
 
-By using symlinks, you can simplify access to your Google Drive files and avoid the clutter of additional virtual drives in your Explorer view. This method ensures all your syncing works seamlessly while keeping your file system tidy.
+That's it. Syncing still works fine, and my Explorer isn't polluted with extra drives anymore.

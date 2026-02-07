@@ -4,10 +4,10 @@ title: 'Handling mistakes as a web developer'
 date: 2023-04-07 14:33:00 +0700
 ---
 
-As a programmer working in web development, I've come to realize that we have a unique ability that many other professions don't: the ability to undo our mistakes. If we make a mistake, we can simply hit "undo" and try again, revert the commit thats causing the mayhem, and push the code again. Yes there will be some consequences for example the amount of time wasted, angry client, data loss, but mostly it can be rectified rather easily and most of the time it will be _possible_.
+One thing I appreciate about being a web developer is that most of our mistakes are fixable. Messed something up? Hit undo, revert the commit, push again. Sure, there are consequences - wasted time, angry clients, maybe some data loss - but most of the time you can recover from it.
 
-Unlike doctors, engineers, or pilots, if they did something wrong, people actually die. This doesn't mean that programmer job is any less important, but it does mean that the consequences of making mistakes are usually not as severe.
+Compare that to doctors, engineers, or pilots - if they mess up, people can actually die. That doesn't make our job less important, but the stakes are definitely different.
 
-Of course, this doesn't mean that we should be careless in our work. In fact, it's quite the opposite. The fact that we have the power to undo our mistakes means that we have a greater responsibility to be thorough and careful in our work. We need to test our code thoroughly, make sure that it's secure, and ensure that it meets the needs of our clients and users.
+That said, knowing you can always revert stuff can make you sloppy if you're not careful. I've caught myself skipping things because "I can just fix it later" and that's a bad habit. The safety net is nice, but it shouldn't be an excuse to cut corners.
 
-It's also worth noting that just because we can undo our mistakes doesn't mean that we should be complacent. We should always strive to learn from our mistakes and improve our skills. We should take the time to review our code and learn from the mistakes we've made in the past. This will not only make us better programmers, but it will also help us to be more responsible and conscientious in our work.
+I try to look back at my past screw-ups every now and then. Not to beat myself up, but because that's honestly where I learn the most. And let's be real, reverting a broken deploy at 2am is not fun - better to get it right the first time when you can.

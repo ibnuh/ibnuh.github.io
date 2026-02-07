@@ -4,8 +4,6 @@ title: 'Better local development with .localhost subdomains'
 date: 2025-06-28 10:21:00 +0700
 ---
 
-_A comprehensive guide to using .localhost domains for better local development environments._
-
 If you're building modern web apps, you've probably already got a few services running locally, a frontend dev server, an API, maybe a mock auth service, Stripe webhooks, Postgres, etc. You run everything on `localhost` and a bunch of ports, and it works, sort of.
 
 But when you start dealing with cookies, cross-origin requests, OAuth flows, HTTPS, and subdomains, the whole setup gets messy fast. That's where `.localhost` becomes super useful.
@@ -320,5 +318,3 @@ mkcert -key-file key.pem -cert-file cert.pem web.localhost api.localhost
 * **Less config and fewer bugs** when you go live
 
 If you're still doing everything on `localhost:3000` and crossing your fingers during deploys, it's worth switching things up. Build your local dev like your production setup, and `.localhost` is the simplest way to get there.
-
-The investment in setting up a proper local development environment with `.localhost` domains pays off quickly when you avoid the debugging nightmares that come from environment mismatches between development and production. 
