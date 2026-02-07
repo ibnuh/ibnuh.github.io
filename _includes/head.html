@@ -6,7 +6,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}?v={{ site.time | date: '%s' }}">
-    
+
     <!-- Google Fonts - Optimized loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,11 +29,11 @@
             theme: 'dark',
             flowchart: {
                 useMaxWidth: true,
-                htmlLabels: true,
+                htmlLabels: false,
                 curve: 'basis'
             },
             themeVariables: {
-                // Dark theme colors matching blog design
+                /* Dark theme colors matching blog design */
                 darkMode: true,
                 background: '#1a1a1a',
                 primaryColor: '#14b8a6',
@@ -42,7 +42,7 @@
                 lineColor: '#6c6c6c',
                 secondaryColor: '#2d2d2d',
                 tertiaryColor: '#1f1f1f',
-                edgeLabelBackground: '#2d2d2d',
+                edgeLabelBackground: 'transparent',
                 clusterBkg: '#343030',
                 clusterBorder: '#14b8a6',
                 defaultLinkColor: '#f59e0b',
@@ -78,26 +78,6 @@
                 fillType6: '#6c6c6c',
                 fillType7: '#ffffff'
             }
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            mermaid.init(undefined, '.mermaid');
-            
-            const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
-                    if (mutation.type === 'childList') {
-                        const mermaidElements = mutation.target.querySelectorAll('.mermaid');
-                        if (mermaidElements.length > 0) {
-                            mermaid.init(undefined, '.mermaid');
-                        }
-                    }
-                });
-            });
-            
-            observer.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
         });
     </script>
 
@@ -161,7 +141,7 @@
 
                 heading.appendChild(feedback);
 
-                requestAnimationFrame(() => {
+                requestAnimationFrame(function() {
                     feedback.style.opacity = '1';
                 });
 
@@ -210,37 +190,37 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             function generateTOC() {
-                const postContent = document.querySelector('.post-content');
+                var postContent = document.querySelector('.post-content');
                 if (!postContent) return;
 
-                const headings = postContent.querySelectorAll('h2, h3, h4, h5, h6');
+                var headings = postContent.querySelectorAll('h2, h3, h4, h5, h6');
                 if (headings.length === 0) return;
 
-                const tocMobile = document.getElementById('toc-mobile');
-                const tocDesktop = document.getElementById('toc-desktop');
+                var tocMobile = document.getElementById('toc-mobile');
+                var tocDesktop = document.getElementById('toc-desktop');
 
                 if (!tocMobile || !tocDesktop) return;
 
-                // Create TOC structure
-                const tocTitle = document.createElement('div');
+                /* Create TOC structure */
+                var tocTitle = document.createElement('div');
                 tocTitle.className = 'toc-title';
                 tocTitle.textContent = 'Table of Contents';
 
-                const tocList = document.createElement('ul');
+                var tocList = document.createElement('ul');
                 tocList.className = 'toc-list';
 
-                let tocHTML = '';
+                var tocHTML = '';
                 headings.forEach(function(heading, index) {
-                    // Generate ID if not exists
-                    let id = heading.id;
+                    /* Generate ID if not exists */
+                    var id = heading.id;
                     if (!id) {
                         id = 'heading-' + index;
                         heading.id = id;
                     }
 
-                    // Create slug from text if needed
-                    if (id.startsWith('heading-')) {
-                        const text = heading.textContent.trim().toLowerCase()
+                    /* Create slug from text if needed */
+                    if (id.indexOf('heading-') === 0) {
+                        var text = heading.textContent.trim().toLowerCase()
                             .replace(/[^\w\s-]/g, '')
                             .replace(/\s+/g, '-')
                             .replace(/-+/g, '-');
@@ -248,8 +228,8 @@
                         heading.id = id;
                     }
 
-                    const level = parseInt(heading.tagName.charAt(1));
-                    const indent = (level - 2) * 1.5; // h2 = 0, h3 = 1.5rem, etc.
+                    var level = parseInt(heading.tagName.charAt(1));
+                    var indent = (level - 2) * 1.5; /* h2 = 0, h3 = 1.5rem, etc. */
 
                     tocHTML += '<li class="toc-item toc-level-' + level + '" style="padding-left: ' + indent + 'rem;">';
                     tocHTML += '<a href="#' + id + '" class="toc-link" data-target="' + id + '">';
@@ -259,85 +239,85 @@
 
                 tocList.innerHTML = tocHTML;
 
-                // Helper to build TOC wrapper with scrollable list container
+                /* Helper to build TOC wrapper with scrollable list container */
                 function appendTOC(target, isDesktop) {
                     if (!target) return;
 
-                    const wrapper = document.createElement('div');
+                    var wrapper = document.createElement('div');
                     wrapper.className = 'toc-wrapper';
 
-                    const title = tocTitle.cloneNode(true);
-                    const listContainer = document.createElement('div');
+                    var title = tocTitle.cloneNode(true);
+                    var listContainer = document.createElement('div');
                     listContainer.className = 'toc-list-container';
-                    const listClone = tocList.cloneNode(true);
+                    var listClone = tocList.cloneNode(true);
                     listContainer.appendChild(listClone);
 
                     wrapper.appendChild(title);
                     wrapper.appendChild(listContainer);
 
                     if (isDesktop) {
-                        // Create container for desktop TOC
-                        const container = document.createElement('div');
+                        /* Create container for desktop TOC */
+                        var container = document.createElement('div');
                         container.className = 'toc-container';
                         container.appendChild(wrapper);
                         target.appendChild(container);
 
-                        // Function to check if we're on a large screen
+                        /* Function to check if we're on a large screen */
                         function isLargeScreen() {
                             return window.innerWidth >= 1400;
                         }
 
-                        // Function to setup TOC based on screen size
+                        /* Function to setup TOC based on screen size */
                         function setupTOC() {
                             if (isLargeScreen()) {
-                                // Large screen: always show TOC, no toggle button
+                                /* Large screen: always show TOC, no toggle button */
                                 target.classList.remove('hidden');
                                 container.classList.add('visible');
-                                // Remove toggle button if it exists
-                                const existingToggle = target.querySelector('.toc-toggle');
+                                /* Remove toggle button if it exists */
+                                var existingToggle = target.querySelector('.toc-toggle');
                                 if (existingToggle) {
                                     existingToggle.remove();
                                 }
                             } else {
-                                // Medium screen: use toggle functionality
-                                let toggleButton = target.querySelector('.toc-toggle');
-                                
+                                /* Medium screen: use toggle functionality */
+                                var toggleButton = target.querySelector('.toc-toggle');
+
                                 if (!toggleButton) {
-                                    // Create toggle button
+                                    /* Create toggle button */
                                     toggleButton = document.createElement('button');
                                     toggleButton.className = 'toc-toggle';
                                     toggleButton.setAttribute('aria-label', 'Toggle Table of Contents');
                                     target.insertBefore(toggleButton, container);
                                 }
 
-                                // Toggle functionality
-                                const isHidden = localStorage.getItem('toc-desktop-hidden') !== 'false'; // Default to hidden
+                                /* Toggle functionality */
+                                var isHidden = localStorage.getItem('toc-desktop-hidden') !== 'false'; /* Default to hidden */
                                 if (isHidden) {
                                     target.classList.add('hidden');
-                                    // Left arrow when hidden (click to show)
+                                    /* Left arrow when hidden (click to show) */
                                     toggleButton.innerHTML = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>';
                                 } else {
                                     container.classList.add('visible');
-                                    // Right arrow when visible (click to hide)
+                                    /* Right arrow when visible (click to hide) */
                                     toggleButton.innerHTML = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>';
                                 }
 
-                                // Remove existing listeners by cloning and replacing
-                                const newToggleButton = toggleButton.cloneNode(true);
+                                /* Remove existing listeners by cloning and replacing */
+                                var newToggleButton = toggleButton.cloneNode(true);
                                 toggleButton.parentNode.replaceChild(newToggleButton, toggleButton);
 
                                 newToggleButton.addEventListener('click', function() {
-                                    const isCurrentlyHidden = target.classList.contains('hidden');
+                                    var isCurrentlyHidden = target.classList.contains('hidden');
                                     if (isCurrentlyHidden) {
                                         target.classList.remove('hidden');
                                         container.classList.add('visible');
-                                        // Right arrow when visible (click to hide)
+                                        /* Right arrow when visible (click to hide) */
                                         newToggleButton.innerHTML = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>';
                                         localStorage.setItem('toc-desktop-hidden', 'false');
                                     } else {
                                         target.classList.add('hidden');
                                         container.classList.remove('visible');
-                                        // Left arrow when hidden (click to show)
+                                        /* Left arrow when hidden (click to show) */
                                         newToggleButton.innerHTML = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>';
                                         localStorage.setItem('toc-desktop-hidden', 'true');
                                     }
@@ -345,11 +325,11 @@
                             }
                         }
 
-                        // Initial setup
+                        /* Initial setup */
                         setupTOC();
 
-                        // Handle window resize
-                        let resizeTimeout;
+                        /* Handle window resize */
+                        var resizeTimeout;
                         window.addEventListener('resize', function() {
                             clearTimeout(resizeTimeout);
                             resizeTimeout = setTimeout(setupTOC, 150);
@@ -362,16 +342,16 @@
                 appendTOC(tocMobile, false);
                 appendTOC(tocDesktop, true);
 
-                // Smooth scroll for TOC links
-                const tocLinks = document.querySelectorAll('.toc-link');
+                /* Smooth scroll for TOC links */
+                var tocLinks = document.querySelectorAll('.toc-link');
                 tocLinks.forEach(function(link) {
                     link.addEventListener('click', function(e) {
                         e.preventDefault();
-                        const targetId = this.getAttribute('data-target');
-                        const targetElement = document.getElementById(targetId);
+                        var targetId = this.getAttribute('data-target');
+                        var targetElement = document.getElementById(targetId);
                         if (targetElement) {
-                            const offset = 100;
-                            const top = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+                            var offset = 100;
+                            var top = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
                             window.scrollTo({
                                 top: top,
                                 behavior: 'smooth'
@@ -380,32 +360,32 @@
                     });
                 });
 
-                // Scroll highlighting with improved algorithm
+                /* Scroll highlighting with improved algorithm */
                 function updateActiveTOCItem() {
-                    const scrollPosition = window.scrollY;
-                    const viewportHeight = window.innerHeight;
-                    const offset = 200; // Offset from top of viewport
-                    
-                    let currentHeading = null;
-                    let minDistance = Infinity;
+                    var scrollPosition = window.scrollY;
+                    var viewportHeight = window.innerHeight;
+                    var offset = 200; /* Offset from top of viewport */
 
-                    // Find the heading closest to the top of viewport (with offset)
+                    var currentHeading = null;
+                    var minDistance = Infinity;
+
+                    /* Find the heading closest to the top of viewport (with offset) */
                     headings.forEach(function(heading) {
-                        const rect = heading.getBoundingClientRect();
-                        const headingTop = scrollPosition + rect.top;
-                        const distance = Math.abs(headingTop - (scrollPosition + offset));
+                        var rect = heading.getBoundingClientRect();
+                        var headingTop = scrollPosition + rect.top;
+                        var distance = Math.abs(headingTop - (scrollPosition + offset));
 
-                        // Heading is above the offset point and closer than previous
+                        /* Heading is above the offset point and closer than previous */
                         if (rect.top <= offset && distance < minDistance) {
                             minDistance = distance;
                             currentHeading = heading;
                         }
                     });
 
-                    // If no heading found above offset, use the first visible one
+                    /* If no heading found above offset, use the first visible one */
                     if (!currentHeading) {
                         headings.forEach(function(heading) {
-                            const rect = heading.getBoundingClientRect();
+                            var rect = heading.getBoundingClientRect();
                             if (rect.top >= 0 && rect.top <= viewportHeight) {
                                 if (!currentHeading || rect.top < currentHeading.getBoundingClientRect().top) {
                                     currentHeading = heading;
@@ -414,23 +394,23 @@
                         });
                     }
 
-                    // Update active state smoothly
+                    /* Update active state smoothly */
                     tocLinks.forEach(function(link) {
-                        const wasActive = link.classList.contains('active');
-                        const shouldBeActive = currentHeading && link.getAttribute('data-target') === currentHeading.id;
-                        
+                        var wasActive = link.classList.contains('active');
+                        var shouldBeActive = currentHeading && link.getAttribute('data-target') === currentHeading.id;
+
                         if (wasActive !== shouldBeActive) {
                             if (shouldBeActive) {
                                 link.classList.add('active');
-                                // Scroll active item into view in desktop TOC (only if needed and visible)
-                                const tocDesktop = document.getElementById('toc-desktop');
-                                const desktopListContainer = document.querySelector('.toc-desktop .toc-list-container');
-                                if (desktopListContainer && desktopListContainer.contains(link) && window.innerWidth >= 1024 && 
-                                    tocDesktop && !tocDesktop.classList.contains('hidden')) {
-                                    const containerHeight = desktopListContainer.clientHeight;
-                                    const containerScrollTop = desktopListContainer.scrollTop;
-                                    const linkTop = link.offsetTop;
-                                    const linkBottom = linkTop + link.offsetHeight;
+                                /* Scroll active item into view in desktop TOC (only if needed and visible) */
+                                var tocDesktopEl = document.getElementById('toc-desktop');
+                                var desktopListContainer = document.querySelector('.toc-desktop .toc-list-container');
+                                if (desktopListContainer && desktopListContainer.contains(link) && window.innerWidth >= 1024 &&
+                                    tocDesktopEl && !tocDesktopEl.classList.contains('hidden')) {
+                                    var containerHeight = desktopListContainer.clientHeight;
+                                    var containerScrollTop = desktopListContainer.scrollTop;
+                                    var linkTop = link.offsetTop;
+                                    var linkBottom = linkTop + link.offsetHeight;
 
                                     if (linkTop < containerScrollTop) {
                                         desktopListContainer.scrollTo({ top: Math.max(linkTop - 24, 0), behavior: 'smooth' });
@@ -445,16 +425,16 @@
                     });
                 }
 
-                // Optimized scroll handler with requestAnimationFrame
-                let lastScrollTop = 0;
-                let ticking = false;
-                
+                /* Optimized scroll handler with requestAnimationFrame */
+                var lastScrollTop = 0;
+                var ticking = false;
+
                 function handleScroll() {
-                    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    
+                    var currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
                     if (!ticking) {
                         window.requestAnimationFrame(function() {
-                            // Only update if scroll position changed significantly
+                            /* Only update if scroll position changed significantly */
                             if (Math.abs(currentScrollTop - lastScrollTop) > 5) {
                                 updateActiveTOCItem();
                                 lastScrollTop = currentScrollTop;
@@ -466,8 +446,8 @@
                 }
 
                 window.addEventListener('scroll', handleScroll, { passive: true });
-                
-                // Initial update after a short delay to ensure DOM is ready
+
+                /* Initial update after a short delay to ensure DOM is ready */
                 setTimeout(function() {
                     updateActiveTOCItem();
                 }, 100);

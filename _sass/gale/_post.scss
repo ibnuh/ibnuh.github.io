@@ -156,17 +156,10 @@
         overflow-x: auto;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         border: 1px solid $grey-3;
-        transition: all 0.3s ease;
-
         @media (max-width: 768px) {
             padding: 1.5rem;
             margin: 1.5rem -1rem;
             border-radius: 8px;
-        }
-
-        &:hover {
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-            transform: translateY(-2px);
         }
 
         svg {
@@ -192,23 +185,11 @@
         .node polygon {
             stroke-width: 2px;
             stroke: $accent-2;
-            transition: all 0.2s ease;
-            
-            &:hover {
-                stroke: $accent-2-light;
-                stroke-width: 3px;
-            }
         }
 
-        // Style edges with better contrast
         .edgePath path {
             stroke-width: 2px;
             stroke: $accent-1;
-            transition: stroke-width 0.2s ease;
-            
-            &:hover {
-                stroke-width: 3px;
-            }
         }
 
         // Style edge labels
@@ -324,12 +305,25 @@
         }
     }
 
-    // Code blocks containing mermaid
+    /* Code blocks containing mermaid */
     pre code.language-mermaid {
         background: none;
         padding: 0;
         border: none;
         border-radius: 0;
+    }
+
+    /* Mermaid diagrams in pre tags (for HTML compress compatibility) */
+    pre.mermaid {
+        background: none;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 2rem 0;
+
+        &::before {
+            display: none;
+        }
     }
 
     // Table of Contents

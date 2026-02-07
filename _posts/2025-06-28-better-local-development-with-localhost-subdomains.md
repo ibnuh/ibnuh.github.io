@@ -12,26 +12,26 @@ But when you start dealing with cookies, cross-origin requests, OAuth flows, HTT
 
 **Any subdomain under `*.localhost` automatically resolves to `127.0.0.1` (your local machine)**, this works on macOS, Linux, and Windows without any configuration. The operating system's DNS resolver handles this automatically.
 
-<div class="mermaid">
+<pre class="mermaid">
 graph TD
     A[web.localhost:3000] --> B[127.0.0.1:3000]
     C[anything.you.want.localhost:3001] --> D[127.0.0.1:3001]
     E[auth.localhost:5000] --> F[127.0.0.1:5000]
     G[payments.localhost:5002] --> H[127.0.0.1:5002]
-    
+
     B --> I[Frontend App]
     D --> J[Backend API]
     F --> K[Auth Service]
     H --> L[Webhook Listener]
-    
+
     classDef domainNode fill:#2d2d2d,stroke:#14b8a6,stroke-width:2px,color:#e4e4e4
     classDef ipNode fill:#343030,stroke:#f59e0b,stroke-width:2px,color:#e4e4e4
     classDef serviceNode fill:#1f1f1f,stroke:#f97316,stroke-width:2px,color:#e4e4e4
-    
+
     class A,C,E,G domainNode
     class B,D,F,H ipNode
     class I,J,K,L serviceNode
-</div>
+</pre>
 
 ## Clean multi-service dev environments
 
@@ -69,19 +69,19 @@ In production, those services would live on separate domains or subdomains. On l
 * Inability to properly test the Domain, Path, or SameSite behavior
 * Bugs that only show up after deployment
 
-<div class="mermaid">
+<pre class="mermaid">
 graph TB
     A[localhost:3000] --> B[Cookie Jar]
     C[localhost:3001] --> B
     D[localhost:5000] --> B
     E[localhost:5002] --> B
-    
+
     classDef portNode fill:#2d2d2d,stroke:#14b8a6,stroke-width:2px,color:#e4e4e4
     classDef cookieNode fill:#f59e0b,stroke:#f59e0b,stroke-width:2px,color:#1a1a1a
-    
+
     class A,C,D,E portNode
     class B cookieNode
-</div>
+</pre>
 
 ### `127.0.0.1` and `localhost` are not treated the same
 
