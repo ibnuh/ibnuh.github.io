@@ -4,41 +4,32 @@ Personal blog built with Jekyll using the Gale theme.
 
 ## Features
 
-- Clean, minimal design
+- Clean, minimal dark design
 - Syntax highlighting for code blocks
 - Mermaid diagram support
 - Responsive design
 - SEO optimized
+- HTML compression
+- Google Fonts (Lora, Space Grotesk, Inter, JetBrains Mono)
 
 ## Mermaid Diagrams
 
-This blog supports Mermaid diagrams for creating flowcharts, sequence diagrams, and other visualizations. You can use them in your posts in two ways:
+This blog supports Mermaid diagrams for creating flowcharts, sequence diagrams, and other visualizations.
 
-### Method 1: Using Markdown Code Blocks
+Use `<pre class="mermaid">` tags in your posts:
 
-```markdown
-```mermaid
+```html
+<pre class="mermaid">
 graph TD
     A[Start] --> B{Decision?}
     B -->|Yes| C[Do Something]
     B -->|No| D[Do Nothing]
     C --> E[End]
     D --> E
-```
+</pre>
 ```
 
-### Method 2: Using the Custom Tag
-
-```markdown
-{% mermaid %}
-graph TD
-    A[Start] --> B{Decision?}
-    B -->|Yes| C[Do Something]
-    B -->|No| D[Do Nothing]
-    C --> E[End]
-    D --> E
-{% endmermaid %}
-```
+The `<pre>` tag is required instead of `<div>` for compatibility with the HTML compress layout, which preserves whitespace inside `<pre>` but not `<div>`.
 
 ### Supported Diagram Types
 
@@ -47,37 +38,28 @@ graph TD
 - Class diagrams
 - State diagrams
 - Entity Relationship diagrams
-- User Journey diagrams
 - Gantt charts
 - Pie charts
-- Git graphs
-
-### Styling
-
-Mermaid diagrams are automatically styled to match your blog's theme with:
-- Responsive design
-- Dark theme compatibility
-- Custom colors matching your accent colors
-- Proper spacing and padding
 
 ## Development
 
 ### Prerequisites
 
-- Ruby 3.4.3 or higher
+- Ruby 3.2 or higher
 - Bundler
 
 ### Setup
 
-1. Clone the repository
-2. Install dependencies: `bundle install`
-3. Start the development server: `bundle exec jekyll serve`
-
-### Building
-
 ```bash
-bundle exec jekyll build
+git clone https://github.com/ibnuh/ibnuh.github.io.git
+cd ibnuh.github.io
+bundle install
+bundle exec jekyll serve
 ```
+
+### Deployment
+
+The site deploys to GitHub Pages via GitHub Actions. Push to `master` to trigger a build.
 
 ## License
 
